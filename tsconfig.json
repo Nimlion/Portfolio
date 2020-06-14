@@ -1,0 +1,23 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "strict": true,
+    "target": "esnext",
+    "module": "esnext",
+    "jsx": "react",
+    "allowJs": true,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "preserveConstEnums": true,
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "lib": ["dom", "es2015", "es2016"],
+    "typeRoots": ["./node_modules/@types/"]
+  },
+  "include": ["typings", "src/**/*"],
+  "exclude": [".cache", "public", "node_modules", "gatsby-*.js"]
+}

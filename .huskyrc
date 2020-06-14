@@ -1,0 +1,6 @@
+{
+  "hooks": {
+    "pre-commit": "npm run format && npm run lint && yarn validate && yarn test",
+    "pre-push": "npm run test:coverage"
+  }
+}
