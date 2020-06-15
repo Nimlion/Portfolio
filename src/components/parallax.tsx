@@ -1,7 +1,16 @@
 import React, { Component } from "react"
 import styled from "styled-components"
 
-export class Parallax extends Component {
+// Styling
+import colors from "../styles/colors"
+import textStyles from "../styles/textStyles"
+import breakpoints from "../styles/breakpoints"
+
+interface IParallax {
+  title: string
+}
+
+export class Parallax extends Component<IParallax> {
   public state = {
     offset: 0,
   }
@@ -25,6 +34,7 @@ export class Parallax extends Component {
     return (
       <Container>
         <ParallaxWrapper scroll={this.state.offset} id="name"></ParallaxWrapper>
+        <Title>{this.props.title}</Title>
       </Container>
     )
   }
@@ -32,16 +42,21 @@ export class Parallax extends Component {
 
 export default Parallax
 
-interface IParallax {
+interface IScroll {
   scroll: number
 }
 
 const Container = styled.div`
-  height: 1000px;
+  height: 80vh;
   width: 100%;
   overflow: hidden;
+  position: relative;
+
+  @media (min-width: ${breakpoints.M}px) {
+    height: 70vh;
+  }
 `
-const ParallaxWrapper = styled.div<IParallax>`
+const ParallaxWrapper = styled.div<IScroll>`
   background-image: url("ocean.jpg");
   background-size: cover;
   background-position: center;
@@ -51,4 +66,18 @@ const ParallaxWrapper = styled.div<IParallax>`
     props.scroll !== null
       ? `transform: scale(${1 + props.scroll / 1000});`
       : "transform: none;"};
+`
+
+const Title = styled.span`
+  ${textStyles.title};
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: ${colors.white};
+  text-align: center;
+  line-height: 1.3;
+  letter-spacing: 1px;
+  text-transform: capitalize;
+  text-shadow: 1px 1px 5px ${colors.background};
 `

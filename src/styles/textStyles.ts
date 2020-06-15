@@ -10,8 +10,8 @@ export default {
     font-family: ${fonts.primary};
     font-weight: ${fontWeights.semiBold};
     font-size: 48px;
-    line-height: 1;
-    letter-spacing: -3px;
+    line-height: 1.4;
+    letter-spacing: 2px;
 
     @media (min-width: ${breakpoints.M}px) {
       font-size: 64px;
@@ -29,8 +29,8 @@ export default {
     font-family: ${fonts.primary};
     font-weight: ${fontWeights.semiBold};
     font-size: 32px;
-    line-height: 1;
-    letter-spacing: -1px;
+    line-height: 1.3;
+    letter-spacing: 1px;
 
     @media (min-width: ${breakpoints.L}px) {
       font-size: 40px;
