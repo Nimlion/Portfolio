@@ -7,7 +7,8 @@ import textStyles from "../styles/textStyles"
 import breakpoints from "../styles/breakpoints"
 
 interface IParallax {
-  title: string
+  title?: string
+  imgURL?: string
 }
 
 export class Parallax extends Component<IParallax> {
@@ -33,8 +34,12 @@ export class Parallax extends Component<IParallax> {
   public render() {
     return (
       <Container>
-        <ParallaxWrapper scroll={this.state.offset} id="name"></ParallaxWrapper>
-        <Title>{this.props.title}</Title>
+        <ParallaxWrapper
+          url={this.props.imgURL}
+          scroll={this.state.offset}
+          id="name"
+        ></ParallaxWrapper>
+        {this.props.title && <Title>{this.props.title}</Title>}
       </Container>
     )
   }
@@ -44,6 +49,7 @@ export default Parallax
 
 interface IScroll {
   scroll: number
+  url?: string
 }
 
 const Container = styled.div`
@@ -53,11 +59,15 @@ const Container = styled.div`
   position: relative;
 
   @media (min-width: ${breakpoints.M}px) {
-    height: 70vh;
+    height: 90vh;
   }
 `
 const ParallaxWrapper = styled.div<IScroll>`
-  background-image: url("ocean.jpg");
+  background-color: ${colors.orange};
+  background-image: ${props =>
+    props.url !== undefined && props.url !== null && props.url !== ""
+      ? `url(${props.url});`
+      : "url('ocean.jpg');"};
   background-size: cover;
   background-position: center;
   height: 100%;
