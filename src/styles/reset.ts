@@ -1,6 +1,9 @@
 import { createGlobalStyle } from "styled-components"
+import { fontFaces } from "./fonts"
 
 const reset = createGlobalStyle`
+  ${fontFaces};
+
   html {
     font-family: sans-serif;
     -ms-text-size-adjust: 100%;
