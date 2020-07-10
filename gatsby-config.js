@@ -1,17 +1,16 @@
 require("./config/env")
-
 module.exports = {
   siteMetadata: {
-    title: `Hosam Darwish`,
-    description: `Personal portfolio of Hosam Darwish`,
+    title: `Gatsby Default Starter`,
+    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
     author: `@gatsbyjs`,
-    siteUrl: `https://www.hosamdarwish.nl`,
+    siteUrl: `https://www.example.com`,
   },
   plugins: [
     {
       resolve: `gatsby-plugin-env-variables`,
       options: {
-        whitelist: ["COMMIT_HASH", "VERSION"], // Add ENV vars to whitelist here and they'll show up in your client-side
+        whitelist: ["NODE_ENV", "COMMIT_HASH", "VERSION"], // Add ENV vars to whitelist here and they'll show up in your client-side
       },
     },
     `gatsby-plugin-typescript`,
@@ -47,6 +46,15 @@ module.exports = {
       },
     },
     {
+      resolve: "gatsby-plugin-web-font-loader",
+      options: {
+        custom: {
+          families: ["CircularStd"],
+          urls: ["/fonts/fonts.css"],
+        },
+      },
+    },
+    {
       resolve: `gatsby-plugin-netlify`,
       options: {
         headers: {
@@ -59,9 +67,10 @@ module.exports = {
           ],
         },
         mergeSecurityHeaders: false,
+        mergeLinkHeaders: false,
+        mergeCachingHeaders: false,
       },
     },
-    `gatsby-plugin-robots-txt`,
     {
       resolve: "gatsby-source-prismic",
       options: {
@@ -72,6 +81,7 @@ module.exports = {
         },
       },
     },
+    `gatsby-plugin-robots-txt`,
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
