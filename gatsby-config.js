@@ -1,10 +1,10 @@
 require("./config/env")
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
+    title: `Hosam Darwish`,
+    description: `Personal portfolio of Hosam Darwish`,
     author: `@gatsbyjs`,
-    siteUrl: `https://www.example.com`,
+    siteUrl: `https://www.hosamdarwish.nl`,
   },
   plugins: [
     {
@@ -43,15 +43,6 @@ module.exports = {
       resolve: `gatsby-plugin-sitemap`,
       options: {
         sitemapSize: 5000,
-      },
-    },
-    {
-      resolve: "gatsby-plugin-web-font-loader",
-      options: {
-        custom: {
-          families: ["CircularStd"],
-          urls: ["/fonts/fonts.css"],
-        },
       },
     },
     {
