@@ -50,7 +50,7 @@ jspm_packages/
 
 # dotenv environment variables files
 .env.local
-.env.*.local
+.env.*
 
 # gatsby files
 .cache/

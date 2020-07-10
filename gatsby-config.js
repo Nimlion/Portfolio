@@ -62,6 +62,16 @@ module.exports = {
       },
     },
     `gatsby-plugin-robots-txt`,
+    {
+      resolve: "gatsby-source-prismic",
+      options: {
+        repositoryName: process.env.PRISMIC_REPO_NAME,
+        accessToken: process.env.PRISMIC_TOKEN,
+        schemas: {
+          homepage: require("./src/schemas/homepage.json"),
+        },
+      },
+    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
