@@ -1,5 +1,5 @@
-import React, { Component } from "react"
-import styled from "styled-components"
+import React, { useState, useEffect } from "react"
+import styled, { keyframes } from "styled-components"
 
 // Styling
 import colors from "../styles/colors"
@@ -11,41 +11,30 @@ interface IParallax {
   imgURL?: string
 }
 
-export class Parallax extends Component<IParallax> {
-  public state = {
-    offset: 0,
-  }
+const ParallaxHero: React.FC<IParallax> = ({ imgURL, title }: IParallax) => {
+  const [offset, setOffset] = useState(0)
 
-  public componentDidMount() {
-    window.addEventListener("scroll", this.updateParallax)
-  }
+  useEffect(() => {
+    // Changes the image position for a parallax effect
+    const updateParallax = () => {
+      setOffset(Math.round(window.pageYOffset))
+    }
+    window.addEventListener("scroll", updateParallax)
+    // Specify how to clean up after this effect:
+    return function cleanup() {
+      window.removeEventListener("scroll", updateParallax)
+    }
+  })
 
-  public componentWillUnmount() {
-    window.removeEventListener("scroll", this.updateParallax)
-  }
-
-  // Changes the image position for a parallax effect
-  public updateParallax = () => {
-    this.setState({
-      offset: Math.round(window.pageYOffset),
-    })
-  }
-
-  public render() {
-    return (
-      <Container>
-        <ParallaxWrapper
-          url={this.props.imgURL}
-          scroll={this.state.offset}
-          id="name"
-        ></ParallaxWrapper>
-        {this.props.title && <Title>{this.props.title}</Title>}
-      </Container>
-    )
-  }
+  return (
+    <Container>
+      <ParallaxWrapper url={imgURL} scroll={offset} id="name"></ParallaxWrapper>
+      {title && <Title scroll={offset}>{title}</Title>}
+    </Container>
+  )
 }
 
-export default Parallax
+export default ParallaxHero
 
 interface IScroll {
   scroll: number
@@ -63,7 +52,6 @@ const Container = styled.div`
   }
 `
 const ParallaxWrapper = styled.div<IScroll>`
-  background-color: ${colors.orange};
   background-image: ${props =>
     props.url !== undefined && props.url !== null && props.url !== ""
       ? `url(${props.url});`
@@ -74,20 +62,48 @@ const ParallaxWrapper = styled.div<IScroll>`
   width: 100%;
   ${props =>
     props.scroll !== null
-      ? `transform: scale(${1 + props.scroll / 1000});`
+      ? `transform: scale(${Math.round((1 + props.scroll / 1000) * 100) /
+          100});`
       : "transform: none;"};
 `
 
-const Title = styled.span`
+const blink = keyframes`
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+`
+
+const Title = styled.span<IScroll>`
   ${textStyles.title};
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  ${props =>
+    props.scroll !== null
+      ? `transform: translate(-50%, -${props.scroll / 1.5 + 50}%);`
+      : `transform: translate(-50%, -50%);`};
   color: ${colors.white};
   text-align: center;
   line-height: 1.3;
   letter-spacing: 1px;
   text-transform: capitalize;
   text-shadow: 1px 1px 5px ${colors.background};
+
+  &:after {
+    content: "";
+    width: 15px;
+    position: absolute;
+    height: 4px;
+    display: block;
+    background: ${colors.orange};
+    margin-bottom: 4px;
+    margin-left: 2px;
+    right: -20px;
+    bottom: 4px;
+    -webkit-animation: ${blink} infinite 1s;
+    animation: bcCCNc infinite 1s;
+  }
 `
