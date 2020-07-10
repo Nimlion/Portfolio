@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useLayoutEffect } from "react"
 import styled, { keyframes } from "styled-components"
 
 // Styling
@@ -14,7 +14,7 @@ interface IParallax {
 const ParallaxHero: React.FC<IParallax> = ({ imgURL, title }: IParallax) => {
   const [offset, setOffset] = useState(0)
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     // Changes the image position for a parallax effect
     const updateParallax = () => {
       setOffset(Math.round(window.pageYOffset))
@@ -51,6 +51,7 @@ const Container = styled.div`
     height: 90vh;
   }
 `
+
 const ParallaxWrapper = styled.div<IScroll>`
   background-image: ${props =>
     props.url !== undefined && props.url !== null && props.url !== ""
@@ -103,7 +104,6 @@ const Title = styled.span<IScroll>`
     margin-left: 2px;
     right: -20px;
     bottom: 4px;
-    -webkit-animation: ${blink} infinite 1s;
-    animation: bcCCNc infinite 1s;
+    animation: ${blink} infinite 1s;
   }
 `

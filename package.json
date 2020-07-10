@@ -81,9 +81,8 @@
     "serve": "gatsby serve",
     "format": "prettier --list-different \"src/**/*.{js,jsx,ts,tsx}\"",
     "validate": "tsc --noEmit",
-    "lint": "npm run lint:ts && npm run lint:js",
+    "lint": "npm run lint:ts",
     "lint:ts": "tslint -t stylish \"src/**/*.{ts,tsx}\"",
-    "lint:js": "eslint -f stylish \"**/*.{js,jsx}\"",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage"
