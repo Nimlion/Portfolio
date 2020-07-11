@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect } from "react"
+import React, { useState, useLayoutEffect, useRef, useEffect } from "react"
 import styled, { keyframes } from "styled-components"
 
 // Styling
@@ -13,12 +13,46 @@ interface IParallax {
 
 const ParallaxHero: React.FC<IParallax> = ({ imgURL, title }: IParallax) => {
   const [offset, setOffset] = useState(0)
+  const [currentTitle, setCurrentTitle] = useState(title)
+  const titleRef = useRef<HTMLSpanElement>(null)
+
+  const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
+
+  const typingContainer = titleRef.current
+
+  const keepWriting = async () => {
+    while (typingContainer !== null) {
+      await write(typingContainer.innerHTML)
+      await sleep(1000)
+    }
+  }
+
+  const write = async (text: string) => {
+    if (
+      typingContainer !== undefined &&
+      typingContainer !== null &&
+      currentTitle !== undefined &&
+      currentTitle !== null
+    ) {
+      let index = 0
+      while (index < text.length) {
+        await sleep(500)
+        index++
+        setCurrentTitle(currentTitle.substring(0, index))
+      }
+    }
+  }
+
+  useEffect(() => {
+    keepWriting()
+  }, [typingContainer])
 
   useLayoutEffect(() => {
     // Changes the image position for a parallax effect
     const updateParallax = () => {
       setOffset(Math.round(window.pageYOffset))
     }
+
     window.addEventListener("scroll", updateParallax)
     // Specify how to clean up after this effect:
     return function cleanup() {
@@ -29,7 +63,11 @@ const ParallaxHero: React.FC<IParallax> = ({ imgURL, title }: IParallax) => {
   return (
     <Container>
       <ParallaxWrapper url={imgURL} scroll={offset} id="name"></ParallaxWrapper>
-      {title && <Title scroll={offset}>{title}</Title>}
+      {title && (
+        <Title ref={titleRef} scroll={offset}>
+          {currentTitle}
+        </Title>
+      )}
     </Container>
   )
 }

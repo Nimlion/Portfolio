@@ -41,7 +41,7 @@ const Wrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   margin: 0 auto;
-  padding: 15px;
+  padding: 10px 20px;
 `
 
 const Logo = styled(LogoSVG)`
@@ -50,12 +50,12 @@ const Logo = styled(LogoSVG)`
 `
 
 const Menu = styled(MenuSVG)`
-  height: 25px;
-  width: 25px;
+  height: 15px;
+  width: 15px;
 
   @media (min-width: ${breakpoints.S}px) {
-    height: 35px;
-    width: 35px;
+    height: 28px;
+    width: 28px;
   }
 `
 
