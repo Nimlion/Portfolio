@@ -1,24 +1,64 @@
-import React from "react"
-import styled from "styled-components"
+import React, { useState } from "react"
+import styled, { keyframes, css } from "styled-components"
 
 // Components
 import MenuSVG from "./icons/menu"
 import LogoSVG from "./icons/logo"
+import CloseSVG from "./icons/close"
 
 // Styling
 import colors from "../styles/colors"
 import breakpoints from "../styles/breakpoints"
 
-const Header: React.FC = () => (
-  <>
-    <Container>
-      <Wrapper>
-        <Logo color={colors.background} />
-        <Menu color={colors.background} />
-      </Wrapper>
-    </Container>
-  </>
-)
+const Header: React.FC = () => {
+  const [menuOpen, setMenuOpen] = useState(false)
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen)
+  }
+
+  return (
+    <>
+      <Container>
+        <Wrapper>
+          <Logo color={colors.background} />
+          <span onClick={toggleMenu}>
+            <Menu color={colors.background} />
+          </span>
+        </Wrapper>
+      </Container>
+      <MenuContainer active={menuOpen}>
+        <span onClick={toggleMenu}>
+          <Exit color={colors.white} />
+        </span>
+      </MenuContainer>
+    </>
+  )
+}
+
+export default Header
+
+interface IActive {
+  active: boolean
+}
+
+const swipeDown = keyframes`
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+`
+
+const swipeUp = keyframes`
+  0% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+`
 
 const Container = styled.header`
   background: ${colors.white};
@@ -26,7 +66,7 @@ const Container = styled.header`
   width: 100%;
   position: fixed;
   transition: 0.5s;
-  z-index: 5;
+  z-index: 1;
   box-shadow: 0 5px 10px ${colors.background};
 
   :hover {
@@ -50,6 +90,7 @@ const Logo = styled(LogoSVG)`
 `
 
 const Menu = styled(MenuSVG)`
+  cursor: pointer;
   height: 15px;
   width: 15px;
 
@@ -59,4 +100,38 @@ const Menu = styled(MenuSVG)`
   }
 `
 
-export default Header
+const MenuContainer = styled.div<IActive>`
+  z-index: 5;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  background-color: ${colors.background};
+  width: 100%;
+  height: 100%;
+  transform: translateY(-100%);
+
+  ${props =>
+    props.active
+      ? css`
+          animation: ${swipeDown} cubic-bezier(0.5, 0, 0.5, 1.1) 1s;
+          transform: translateY(0%);
+        `
+      : css`
+          animation: ${swipeUp} linear 0.5s;
+          transform: translateY(-100%);
+        `};
+`
+
+const Exit = styled(CloseSVG)`
+  cursor: pointer;
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  height: 15px;
+  width: 15px;
+
+  @media (min-width: ${breakpoints.S}px) {
+    height: 28px;
+    width: 28px;
+  }
+`

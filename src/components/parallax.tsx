@@ -79,6 +79,15 @@ interface IScroll {
   url?: string
 }
 
+const blink = keyframes`
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+`
+
 const Container = styled.div`
   height: 80vh;
   width: 100%;
@@ -104,15 +113,6 @@ const ParallaxWrapper = styled.div<IScroll>`
       ? `transform: scale(${Math.round((1 + props.scroll / 1000) * 100) /
           100});`
       : "transform: none;"};
-`
-
-const blink = keyframes`
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
 `
 
 const Title = styled.span<IScroll>`
