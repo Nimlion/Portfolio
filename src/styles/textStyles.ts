@@ -28,10 +28,13 @@ export default {
   title: css`
     font-family: ${fonts.primary};
     font-weight: ${fontWeights.semiBold};
-    font-size: 32px;
+    font-size: 28px;
     line-height: 1.3;
     letter-spacing: 1px;
 
+    @media (min-width: ${breakpoints.S}px) {
+      font-size: 32px;
+    }
     @media (min-width: ${breakpoints.L}px) {
       font-size: 40px;
     }
