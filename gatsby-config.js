@@ -1,4 +1,5 @@
 require("./config/env")
+
 module.exports = {
   siteMetadata: {
     title: `Hosam Darwish`,
