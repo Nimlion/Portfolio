@@ -11,10 +11,12 @@ import colors from "../styles/colors"
 import breakpoints from "../styles/breakpoints"
 
 const Header: React.FC = () => {
-  const [menuOpen, setMenuOpen] = useState(false)
+  const [menuOpen, setMenuOpen] = useState("")
 
   const toggleMenu = () => {
-    setMenuOpen(!menuOpen)
+    menuOpen === "" || menuOpen === "closed"
+      ? setMenuOpen("open")
+      : setMenuOpen("closed")
   }
 
   return (
@@ -39,8 +41,26 @@ const Header: React.FC = () => {
 export default Header
 
 interface IActive {
-  active: boolean
+  active: string
 }
+
+const swipeIn = keyframes`
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+`
+
+const swipeOut = keyframes`
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+`
 
 const swipeDown = keyframes`
   0% {
@@ -108,18 +128,42 @@ const MenuContainer = styled.div<IActive>`
   background-color: ${colors.background};
   width: 100%;
   height: 100%;
-  transform: translateY(-100%);
+  transform: translateX(-100%);
 
   ${props =>
-    props.active
+    props.active === "open"
       ? css`
-          animation: ${swipeDown} cubic-bezier(0.5, 0, 0.5, 1.1) 1s;
-          transform: translateY(0%);
+          animation: ${swipeIn} cubic-bezier(0.5, 0, 0.5, 1.1) 1s;
+          transform: translateX(0%);
         `
-      : css`
-          animation: ${swipeUp} linear 0.5s;
-          transform: translateY(-100%);
-        `};
+      : ``};
+
+  ${props =>
+    props.active === "closed"
+      ? css`
+          animation: ${swipeOut} linear 0.5s;
+          transform: translateX(-100%);
+        `
+      : ``};
+
+  @media (min-width: ${breakpoints.M}px) {
+    transform: translateY(-100%);
+    ${props =>
+      props.active === "open"
+        ? css`
+            animation: ${swipeDown} cubic-bezier(0.5, 0, 0.5, 1.1) 1s;
+            transform: translateY(0%);
+          `
+        : ``};
+
+    ${props =>
+      props.active === "closed"
+        ? css`
+            animation: ${swipeUp} linear 0.5s;
+            transform: translateY(-100%);
+          `
+        : ``};
+  }
 `
 
 const Exit = styled(CloseSVG)`
