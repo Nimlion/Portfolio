@@ -258,14 +258,14 @@ const Plane = styled.div`
   @media (min-width: ${breakpoints.M}px) {
     position: absolute;
     width: 60%;
-    height: 30%;
+    height: 36%;
   }
 
   :nth-of-type(1) {
     background-color: ${colors.blue};
     opacity: 1;
     right: 50px;
-    bottom: calc(35% - 50px);
+    bottom: calc(32% - 50px);
     z-index: 3;
   }
 
@@ -273,15 +273,15 @@ const Plane = styled.div`
     background-color: ${colors.orange};
     opacity: 0.75;
     right: 100px;
-    bottom: 35%;
+    bottom: 32%;
     z-index: 2;
   }
 
   :nth-of-type(3) {
-    background-color: ${colors.white};
+    background-color: ${colors.green};
     opacity: 0.5;
     right: 150px;
-    bottom: calc(35% + 50px);
+    bottom: calc(32% + 50px);
     z-index: 1;
   }
 `
