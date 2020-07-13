@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import styled, { keyframes, css } from "styled-components"
+import { Link } from "gatsby"
 
 // Components
 import MenuSVG from "./icons/menu"
@@ -8,6 +9,7 @@ import CloseSVG from "./icons/close"
 
 // Styling
 import colors from "../styles/colors"
+import textStyles from "../styles/textStyles"
 import breakpoints from "../styles/breakpoints"
 
 const Header: React.FC = () => {
@@ -30,6 +32,22 @@ const Header: React.FC = () => {
         </Wrapper>
       </Container>
       <MenuContainer active={menuOpen}>
+        <MenuRow>
+          <Block>
+            <PlaneContainer>
+              <Plane />
+              <Plane />
+              <Plane />
+            </PlaneContainer>
+          </Block>
+          <Block>
+            <MenuLink to="/">- Home</MenuLink>
+            <MenuLink to="/portfolio">- Portfolio</MenuLink>
+            <MenuLink to="/work">- Work</MenuLink>
+            <MenuLink to="/contact">- Contact</MenuLink>
+          </Block>
+        </MenuRow>
+
         <span onClick={toggleMenu}>
           <Exit color={colors.white} />
         </span>
@@ -177,5 +195,136 @@ const Exit = styled(CloseSVG)`
   @media (min-width: ${breakpoints.S}px) {
     height: 28px;
     width: 28px;
+  }
+
+  @media (min-width: ${breakpoints.XL}px) {
+    top: 50px;
+    right: 50px;
+    height: 45px;
+    width: 45px;
+  }
+`
+
+const MenuRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+`
+
+const Block = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+
+  :nth-of-type(1) {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 25px;
+
+    @media (min-width: ${breakpoints.S}px) {
+      width: 40px;
+    }
+
+    @media (min-width: ${breakpoints.M}px) {
+      width: 100%;
+    }
+  }
+
+  @media (min-width: ${breakpoints.M}px) {
+    :nth-of-type(1) {
+      position: unset;
+      display: block;
+    }
+  }
+`
+
+const PlaneContainer = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
+`
+
+const Plane = styled.div`
+  position: unset;
+  height: 20%;
+
+  @media (min-width: ${breakpoints.M}px) {
+    position: absolute;
+    width: 60%;
+    height: 30%;
+  }
+
+  :nth-of-type(1) {
+    background-color: ${colors.blue};
+    opacity: 1;
+    right: 50px;
+    bottom: calc(35% - 50px);
+    z-index: 3;
+  }
+
+  :nth-of-type(2) {
+    background-color: ${colors.orange};
+    opacity: 0.75;
+    right: 100px;
+    bottom: 35%;
+    z-index: 2;
+  }
+
+  :nth-of-type(3) {
+    background-color: ${colors.white};
+    opacity: 0.5;
+    right: 150px;
+    bottom: calc(35% + 50px);
+    z-index: 1;
+  }
+`
+
+const MenuLink = styled(Link)`
+  ${textStyles.title};
+  color: ${colors.white};
+  display: block;
+  padding: 5px 0;
+  text-decoration: none;
+  transition: 0.5s;
+  position: relative;
+  overflow: hidden;
+
+  :after,
+  :before {
+    content: "";
+    position: absolute;
+    transition: 0.5s;
+    width: 100%;
+    background: ${colors.white};
+    height: 2px;
+  }
+
+  :before {
+    top: 0;
+    left: -150%;
+  }
+
+  :after {
+    bottom: 0;
+    right: -150%;
+  }
+
+  :hover {
+    :before {
+      top: 0;
+      left: 0%;
+    }
+
+    :after {
+      bottom: 0;
+      right: 0%;
+    }
   }
 `
