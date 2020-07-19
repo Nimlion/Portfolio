@@ -10,7 +10,12 @@ module.exports = {
     {
       resolve: `gatsby-plugin-env-variables`,
       options: {
-        whitelist: ["NODE_ENV", "COMMIT_HASH", "VERSION"], // Add ENV vars to whitelist here and they'll show up in your client-side
+        whitelist: [
+          "NODE_ENV",
+          "COMMIT_HASH",
+          "VERSION",
+          "GOOGLE_ANALYITCS_TRACKING_ID",
+        ], // Add ENV vars to whitelist here and they'll show up in your client-side
       },
     },
     `gatsby-plugin-typescript`,
@@ -70,6 +75,14 @@ module.exports = {
         schemas: {
           homepage: require("./src/schemas/homepage.json"),
         },
+      },
+    },
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: process.env.GOOGLE_ANALYITCS_TRACKING_ID,
+        head: true,
+        anonymize: true,
       },
     },
     `gatsby-plugin-robots-txt`,
