@@ -85,7 +85,7 @@ const Container = styled.div`
   overflow: hidden;
   position: relative;
 
-  @media (min-width: ${breakpoints.M}px) {
+  @media (min-width: ${breakpoints.M}) {
     height: 90vh;
   }
 `

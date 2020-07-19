@@ -53,7 +53,7 @@ const Menu = styled(MenuSVG)`
   height: 15px;
   width: 15px;
 
-  @media (min-width: ${breakpoints.S}px) {
+  @media (min-width: ${breakpoints.S}) {
     height: 28px;
     width: 28px;
   }
