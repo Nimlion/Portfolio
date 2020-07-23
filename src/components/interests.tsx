@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { Swipeable } from "react-swipeable"
 import styled from "styled-components"
 
 // Styling
@@ -13,22 +14,49 @@ import { IInterests, IInterest } from "../typings/general"
 const Interests: React.FC<IInterests> = ({ title, interests }: IInterests) => {
   const [index, setIndex] = useState(0)
 
+  const increaseIndex = () => {
+    if (index + 1 < interests.length) {
+      setIndex(prevState => prevState + 1)
+    }
+  }
+
+  const decreaseIndex = () => {
+    if (index > 0) {
+      setIndex(prevState => prevState - 1)
+    }
+  }
+
+  const interestState = (key: number) => {
+    if (key === index) {
+      return "active"
+    } else if (key < index) {
+      return "left"
+    } else {
+      return "right"
+    }
+  }
+
   return (
     <Container>
       <Wrapper>
         <Title>{title}</Title>
-        <Row>
-          {interests.map((interest: IInterest, key: number) => (
-            <InterestBlock
-              active={key === index}
-              key={key}
-              image={interest.image.url}
-            >
-              <InterestLabel>{interest.label}</InterestLabel>
-              <InterestDesc>{interest.desc}</InterestDesc>
-            </InterestBlock>
-          ))}
-        </Row>
+        <Swipeable
+          onSwipedLeft={() => increaseIndex()}
+          onSwipedRight={() => decreaseIndex()}
+        >
+          <Row>
+            {interests.map((interest: IInterest, key: number) => (
+              <InterestBlock
+                state={interestState(key)}
+                key={key}
+                image={interest.image.url}
+              >
+                <InterestLabel>{interest.label}</InterestLabel>
+                <InterestDesc>{interest.desc}</InterestDesc>
+              </InterestBlock>
+            ))}
+          </Row>
+        </Swipeable>
         <Bullets>
           {interests.map((element: IInterest, key: number) => {
             return (
@@ -38,6 +66,8 @@ const Interests: React.FC<IInterests> = ({ title, interests }: IInterests) => {
                 name="interest"
                 element={element}
                 onClick={() => setIndex(key)}
+                checked={key === index ? true : false}
+                readOnly
               />
             )
           })}
@@ -88,16 +118,17 @@ const Row = styled.div`
 const InterestDesc = styled.p`
   ${textStyles.title};
   color: ${colors.white};
-  transform: translateY(300%);
+  transform: translateY(250px);
   transition-timing-function: cubic-bezier(0, 1.17, 1, 1);
   margin: 0;
   padding: 0 50px;
   overflow: hidden;
+  opacity: 0;
   transition: 0.5s;
   text-shadow: 5px 5px 6px rgba(0, 0, 0, 0.75);
 `
 
-const InterestBlock = styled.div<{ image: string; active: boolean }>`
+const InterestBlock = styled.div<{ image: string; state: string }>`
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -108,10 +139,9 @@ const InterestBlock = styled.div<{ image: string; active: boolean }>`
   height: 400px;
   transition: 0.8s;
 
-  ${props =>
-    props.active
-      ? `transform: translateX(0%);`
-      : `transform: translateX(150%);`}
+  ${props => (props.state === "active" ? `transform: translateX(0%);` : ``)}
+  ${props => (props.state === "left" ? `transform: translateX(-150%);` : ``)}
+  ${props => (props.state === "right" ? `transform: translateX(150%);` : ``)}
 
   ${props =>
     props.image
@@ -126,6 +156,7 @@ const InterestBlock = styled.div<{ image: string; active: boolean }>`
   :hover {
     ${InterestDesc} {
       transform: translateY(0%);
+      opacity: 1;
     }
   }
 
@@ -137,6 +168,7 @@ const InterestBlock = styled.div<{ image: string; active: boolean }>`
 const InterestLabel = styled.p`
   ${textStyles.titleLoud};
   color: ${colors.white};
+  text-transform: uppercase;
   text-shadow: 5px 5px 6px rgba(0, 0, 0, 0.75);
   margin: 0 0 25px;
 `
@@ -147,6 +179,7 @@ const Bullets = styled.div`
 `
 
 const Bullet = styled.input<{ element: IInterest }>`
+  cursor: pointer;
   border: none;
   outline: none;
   -webkit-appearance: none;
