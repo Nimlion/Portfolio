@@ -22,7 +22,7 @@ const Interests: React.FC<IInterests> = ({ title, interests }: IInterests) => {
 
   const decreaseIndex = () => {
     if (index > 0) {
-      setIndex(prevState => prevState - 1)
+      setIndex(index - 1)
     }
   }
 
@@ -97,16 +97,21 @@ const Wrapper = styled.div`
 const Title = styled.h3`
   ${textStyles.title};
   color: ${colors.white};
-  margin: 0 0 75px;
+  margin: 0 0 50px;
+
+  @media (min-width: ${breakpoints.M}) {
+    margin: 0 0 75px;
+  }
 `
 
 const Row = styled.div`
   position: relative;
   height: 400px;
-  margin: 0 0 50px;
+  margin: 0 0 30px;
   overflow: hidden;
 
   @media (min-width: ${breakpoints.M}) {
+    margin: 0 0 50px;
     margin: 0 0 75px;
   }
 
@@ -126,6 +131,19 @@ const InterestDesc = styled.p`
   opacity: 0;
   transition: 0.5s;
   text-shadow: 5px 5px 6px rgba(0, 0, 0, 0.75);
+`
+
+const InterestLabel = styled.p`
+  ${textStyles.titleLoud};
+  color: ${colors.white};
+  text-transform: uppercase;
+  text-shadow: 5px 5px 6px rgba(0, 0, 0, 0.75);
+  margin: 0 0 20px;
+  transition: 0.5s;
+
+  @media (min-width: ${breakpoints.M}) {
+    margin: 0 0 25px;
+  }
 `
 
 const InterestBlock = styled.div<{ image: string; state: string }>`
@@ -165,14 +183,6 @@ const InterestBlock = styled.div<{ image: string; state: string }>`
   }
 `
 
-const InterestLabel = styled.p`
-  ${textStyles.titleLoud};
-  color: ${colors.white};
-  text-transform: uppercase;
-  text-shadow: 5px 5px 6px rgba(0, 0, 0, 0.75);
-  margin: 0 0 25px;
-`
-
 const Bullets = styled.div`
   display: flex;
   justify-content: center;
@@ -187,23 +197,34 @@ const Bullet = styled.input<{ element: IInterest }>`
   transition: 0.5s;
 
   :not(:nth-last-of-type(1)) {
-    margin-right: 25px;
+    margin-right: 20px;
   }
 
   :after {
     background-color: ${colors.white};
-    border-radius: 25px;
+    border-radius: 50%;
     position: relative;
     content: "";
     display: block;
     top: 0;
     left: 0;
-    height: 30px;
-    width: 30px;
+    height: 20px;
+    width: 20px;
     transition: 0.5s;
   }
 
   :checked:after {
     background-color: ${colors.blue};
+  }
+
+  @media (min-width: ${breakpoints.M}) {
+    :not(:nth-last-of-type(1)) {
+      margin-right: 25px;
+    }
+
+    :after {
+      height: 30px;
+      width: 30px;
+    }
   }
 `
