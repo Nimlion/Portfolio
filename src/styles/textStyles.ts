@@ -40,7 +40,7 @@ export default {
     }
 
     @media (min-width: ${breakpoints.XL}) {
-      font-size: 56px;
+      font-size: 65px;
     }
   `,
   highlight: css`

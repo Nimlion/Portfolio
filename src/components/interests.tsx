@@ -126,11 +126,20 @@ const InterestDesc = styled.p`
   transform: translateY(250px);
   transition-timing-function: cubic-bezier(0, 1.17, 1, 1);
   margin: 0;
-  padding: 0 50px;
+  margin-top: -55%;
+  padding: 0 20px;
   overflow: hidden;
   opacity: 0;
   transition: 0.5s;
   text-shadow: 5px 5px 6px rgba(0, 0, 0, 0.75);
+
+  @media (min-width: ${breakpoints.XS}) {
+    margin-top: -10%;
+  }
+
+  @media (min-width: ${breakpoints.M}) {
+    padding: 0 50px;
+  }
 `
 
 const InterestLabel = styled.p`
@@ -175,6 +184,7 @@ const InterestBlock = styled.div<{ image: string; state: string }>`
     ${InterestDesc} {
       transform: translateY(0%);
       opacity: 1;
+      margin: 0;
     }
   }
 
