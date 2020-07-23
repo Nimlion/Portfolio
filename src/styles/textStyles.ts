@@ -9,7 +9,7 @@ export default {
   titleLoud: css`
     font-family: ${fonts.primary};
     font-weight: ${fontWeights.semiBold};
-    font-size: 48px;
+    font-size: 40px;
     line-height: 1.4;
     letter-spacing: 2px;
 
