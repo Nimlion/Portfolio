@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import styled, { keyframes, css } from "styled-components"
-import { Link } from "gatsby"
+import { Link, graphql } from "gatsby"
 
 // Components
 import MenuSVG from "./icons/menu"
@@ -11,14 +11,48 @@ import CloseSVG from "./icons/close"
 import colors from "../styles/colors"
 import textStyles from "../styles/textStyles"
 import breakpoints from "../styles/breakpoints"
+import { CMSData } from "../pages/index"
 
-const Header: React.FC = () => {
+const Header = () => {
   const [menuOpen, setMenuOpen] = useState("")
 
   const toggleMenu = () => {
     menuOpen === "" || menuOpen === "closed"
       ? setMenuOpen("open")
       : setMenuOpen("closed")
+  }
+
+  const planeOneAudio = new Audio(CMSData[0])
+  const planeTwoAudio = new Audio(CMSData[1])
+  const planeThreeAudio = new Audio(CMSData[2])
+
+  const playAudio = (index: number) => {
+    switch (index) {
+      case 0:
+        planeOneAudio.play()
+        planeTwoAudio.pause()
+        planeTwoAudio.currentTime = 0
+        planeThreeAudio.pause()
+        planeThreeAudio.currentTime = 0
+
+        break
+      case 1:
+        planeOneAudio.pause()
+        planeOneAudio.currentTime = 0
+        planeTwoAudio.play()
+        planeThreeAudio.pause()
+        planeThreeAudio.currentTime = 0
+        break
+      case 2:
+        planeOneAudio.pause()
+        planeOneAudio.currentTime = 0
+        planeTwoAudio.pause()
+        planeTwoAudio.currentTime = 0
+        planeThreeAudio.play()
+        break
+    }
+    // tslint:disable-next-line: no-console
+    console.log("Congratulations you found an easter egg.")
   }
 
   return (
@@ -35,9 +69,9 @@ const Header: React.FC = () => {
         <MenuRow>
           <Block>
             <PlaneContainer>
-              <Plane />
-              <Plane />
-              <Plane />
+              <Plane onClick={() => playAudio(0)} />
+              <Plane onClick={() => playAudio(1)} />
+              <Plane onClick={() => playAudio(2)} />
             </PlaneContainer>
           </Block>
           <Block>
@@ -57,6 +91,33 @@ const Header: React.FC = () => {
 }
 
 export default Header
+
+export const soundQuery = graphql`
+  query {
+    prismicHomepage {
+      data {
+        hero_image {
+          alt
+          url
+        }
+        title {
+          text
+        }
+      }
+    }
+    allPrismicMenuSounds {
+      nodes {
+        data {
+          sounds {
+            menu_sound {
+              url
+            }
+          }
+        }
+      }
+    }
+  }
+`
 
 interface IActive {
   active: string
