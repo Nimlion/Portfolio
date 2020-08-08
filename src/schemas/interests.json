@@ -1,0 +1,45 @@
+{
+    "Main": {
+        "uid": {
+            "type": "UID",
+            "config": {
+                "label": "uid"
+            }
+        },
+        "title": {
+            "type": "StructuredText",
+            "config": {
+                "single": "heading1, heading2, heading3",
+                "label": "title"
+            }
+        },
+        "interest": {
+            "type": "Group",
+            "config": {
+                "fields": {
+                    "image": {
+                        "type": "Image",
+                        "config": {
+                            "constraint": {},
+                            "thumbnails": [],
+                            "label": "image"
+                        }
+                    },
+                    "label": {
+                        "type": "Text",
+                        "config": {
+                            "label": "label"
+                        }
+                    },
+                    "desc": {
+                        "type": "Text",
+                        "config": {
+                            "label": "desc"
+                        }
+                    }
+                },
+                "label": "interests"
+            }
+        }
+    }
+}
