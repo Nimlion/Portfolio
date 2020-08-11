@@ -188,16 +188,26 @@ const Wrapper = styled.div`
 const Logo = styled(LogoSVG)`
   height: 50px;
   width: 150px;
+
+  @media (min-width: ${breakpoints.XL}) {
+    height: 75px;
+    width: 225px;
+  }
 `
 
 const Menu = styled(MenuSVG)`
   cursor: pointer;
-  height: 15px;
-  width: 15px;
+  height: 22px;
+  width: 22px;
 
   @media (min-width: ${breakpoints.S}) {
     height: 28px;
     width: 28px;
+  }
+
+  @media (min-width: ${breakpoints.XL}) {
+    height: 35px;
+    width: 35px;
   }
 `
 
