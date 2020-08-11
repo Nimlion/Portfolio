@@ -310,6 +310,11 @@ const Plane = styled.div`
     position: absolute;
     width: 60%;
     height: 36%;
+    transition: 0.3s;
+
+    :hover {
+      transform: rotate(3deg);
+    }
   }
 
   :nth-of-type(1) {
