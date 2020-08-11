@@ -11,7 +11,6 @@ import CloseSVG from "./icons/close"
 import colors from "../styles/colors"
 import textStyles from "../styles/textStyles"
 import breakpoints from "../styles/breakpoints"
-import { CMSData } from "../pages/index"
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState("")
@@ -22,37 +21,43 @@ const Header = () => {
       : setMenuOpen("closed")
   }
 
-  const planeOneAudio = new Audio(CMSData[0])
-  const planeTwoAudio = new Audio(CMSData[1])
-  const planeThreeAudio = new Audio(CMSData[2])
+  const planeOneAudio = new Audio("quack.mp3")
+  const planeTwoAudio = new Audio("jeff.mp3")
+  const planeThreeAudio = new Audio("bully.mp3")
 
   const playAudio = (index: number) => {
-    switch (index) {
-      case 0:
-        planeOneAudio.play()
-        planeTwoAudio.pause()
-        planeTwoAudio.currentTime = 0
-        planeThreeAudio.pause()
-        planeThreeAudio.currentTime = 0
+    if (
+      planeOneAudio !== null &&
+      planeTwoAudio !== null &&
+      planeThreeAudio !== null
+    ) {
+      switch (index) {
+        case 0:
+          planeOneAudio.play()
+          planeTwoAudio.pause()
+          planeTwoAudio.currentTime = 0
+          planeThreeAudio.pause()
+          planeThreeAudio.currentTime = 0
 
-        break
-      case 1:
-        planeOneAudio.pause()
-        planeOneAudio.currentTime = 0
-        planeTwoAudio.play()
-        planeThreeAudio.pause()
-        planeThreeAudio.currentTime = 0
-        break
-      case 2:
-        planeOneAudio.pause()
-        planeOneAudio.currentTime = 0
-        planeTwoAudio.pause()
-        planeTwoAudio.currentTime = 0
-        planeThreeAudio.play()
-        break
+          break
+        case 1:
+          planeOneAudio.pause()
+          planeOneAudio.currentTime = 0
+          planeTwoAudio.play()
+          planeThreeAudio.pause()
+          planeThreeAudio.currentTime = 0
+          break
+        case 2:
+          planeOneAudio.pause()
+          planeOneAudio.currentTime = 0
+          planeTwoAudio.pause()
+          planeTwoAudio.currentTime = 0
+          planeThreeAudio.play()
+          break
+      }
+      // tslint:disable-next-line: no-console
+      console.log("Congratulations you found an easter egg.")
     }
-    // tslint:disable-next-line: no-console
-    console.log("Congratulations you found an easter egg.")
   }
 
   return (
