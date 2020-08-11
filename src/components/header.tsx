@@ -215,7 +215,7 @@ const MenuContainer = styled.div<IActive>`
         `
       : ``};
 
-  @media (min-width: ${breakpoints.M}px) {
+  @media (min-width: ${breakpoints.M}) {
     transform: translateY(-100%);
     ${props =>
       props.active === "open"
@@ -243,12 +243,12 @@ const Exit = styled(CloseSVG)`
   height: 15px;
   width: 15px;
 
-  @media (min-width: ${breakpoints.S}px) {
+  @media (min-width: ${breakpoints.S}) {
     height: 28px;
     width: 28px;
   }
 
-  @media (min-width: ${breakpoints.XL}px) {
+  @media (min-width: ${breakpoints.XL}) {
     top: 50px;
     right: 50px;
     height: 45px;
@@ -279,16 +279,16 @@ const Block = styled.div`
     top: 0;
     width: 25px;
 
-    @media (min-width: ${breakpoints.S}px) {
+    @media (min-width: ${breakpoints.S}) {
       width: 40px;
     }
 
-    @media (min-width: ${breakpoints.M}px) {
+    @media (min-width: ${breakpoints.M}) {
       width: 100%;
     }
   }
 
-  @media (min-width: ${breakpoints.M}px) {
+  @media (min-width: ${breakpoints.M}) {
     :nth-of-type(1) {
       position: unset;
       display: block;
@@ -306,7 +306,7 @@ const Plane = styled.div`
   position: unset;
   height: 20%;
 
-  @media (min-width: ${breakpoints.M}px) {
+  @media (min-width: ${breakpoints.M}) {
     position: absolute;
     width: 60%;
     height: 36%;
