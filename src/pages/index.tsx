@@ -159,17 +159,6 @@ export const query = graphql`
         }
       }
     }
-    allPrismicMenuSounds {
-      nodes {
-        data {
-          sounds {
-            menu_sound {
-              url
-            }
-          }
-        }
-      }
-    }
   }
 `
 
