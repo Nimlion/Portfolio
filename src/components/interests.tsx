@@ -134,6 +134,10 @@ const Row = styled.div`
   @media (min-width: ${breakpoints.L}) {
     height: 550px;
   }
+
+  @media (min-width: ${breakpoints.L}) {
+    height: 750px;
+  }
 `
 
 const IconHolder = styled.span<{ active: boolean }>`
@@ -163,6 +167,7 @@ const IconHolder = styled.span<{ active: boolean }>`
 const ArrowIcon = styled(ArrowSVG)`
   width: 48px;
   height: 80px;
+  filter: drop-shadow(3px 3px 5px rgba(0, 0, 0, 0.75));
 `
 
 const InterestDesc = styled.p`
@@ -236,6 +241,10 @@ const InterestBlock = styled.div<{ image: string; state: string }>`
 
   @media (min-width: ${breakpoints.L}) {
     height: 550px;
+  }
+
+  @media (min-width: ${breakpoints.XL}) {
+    height: 750px;
   }
 `
 
