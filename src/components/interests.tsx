@@ -99,6 +99,10 @@ const Title = styled.h3`
   color: ${colors.white};
   margin: 0 0 50px;
 
+  ::selection {
+    text-shadow: 4px 4px 1px ${colors.background};
+  }
+
   @media (min-width: ${breakpoints.M}) {
     margin: 0 0 75px;
   }
