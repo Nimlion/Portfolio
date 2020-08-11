@@ -7,6 +7,16 @@ import colors from "./colors"
 const reset = createGlobalStyle`
   ${fontFaces};
 
+  * {
+    ::-moz-selection {
+      background: ${colors.orange}
+    }
+
+    ::selection {
+      background: ${colors.orange}
+    }
+  }
+
   html {
     font-family: sans-serif;
     -ms-text-size-adjust: 100%;
