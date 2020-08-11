@@ -80,12 +80,8 @@ interface IScroll {
 }
 
 const blink = keyframes`
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
+  from{border-right-color: ${colors.orange};}
+  to{border-right-color: transparent;}
 `
 
 const Container = styled.div`
@@ -130,18 +126,8 @@ const Title = styled.span<IScroll>`
   letter-spacing: 1px;
   text-transform: capitalize;
   text-shadow: 1px 1px 5px ${colors.background};
-
-  &:after {
-    content: "";
-    width: 15px;
-    position: absolute;
-    height: 4px;
-    display: block;
-    background: ${colors.orange};
-    margin-bottom: 4px;
-    margin-left: 2px;
-    right: -20px;
-    bottom: 4px;
-    animation: ${blink} infinite 1s;
-  }
+  width: max-content;
+  padding-right: 2px;
+  border-right: 3px solid;
+  animation: ${blink} infinite 1s;
 `
