@@ -8,6 +8,9 @@ import colors from "../styles/colors"
 import textStyles from "../styles/textStyles"
 import breakpoints from "../styles/breakpoints"
 
+// Components
+import ArrowSVG from "./icons/arrow"
+
 // Typings
 import { IInterests, IInterest } from "../typings/general"
 
@@ -51,6 +54,15 @@ const Interests: React.FC<IInterests> = ({ title, interests }: IInterests) => {
                 key={key}
                 image={interest.image.url}
               >
+                <IconHolder active={key !== 0} onClick={() => decreaseIndex()}>
+                  <ArrowIcon color={colors.white} />
+                </IconHolder>
+                <IconHolder
+                  active={key < interests.length - 1}
+                  onClick={() => increaseIndex()}
+                >
+                  <ArrowIcon color={colors.white} />
+                </IconHolder>
                 <InterestLabel>{interest.label}</InterestLabel>
                 <InterestDesc>{interest.desc}</InterestDesc>
               </InterestBlock>
@@ -79,7 +91,7 @@ const Interests: React.FC<IInterests> = ({ title, interests }: IInterests) => {
 
 export default Interests
 
-const Container = styled.header`
+const Container = styled.div`
   background: ${colors.background};
   width: 100%;
 `
@@ -124,6 +136,35 @@ const Row = styled.div`
   }
 `
 
+const IconHolder = styled.span<{ active: boolean }>`
+  display: none;
+  position: absolute;
+  top: calc(50% - 40px);
+  z-index: 1;
+  cursor: pointer;
+  transition: 0.5s;
+
+  ${props => (props.active ? `` : `top: 100%;`)};
+
+  :nth-of-type(1) {
+    left: 55px;
+  }
+
+  :nth-of-type(2) {
+    right: 55px;
+    transform: rotateY(180deg);
+  }
+
+  @media (min-width: ${breakpoints.M}) {
+    display: block;
+  }
+`
+
+const ArrowIcon = styled(ArrowSVG)`
+  width: 48px;
+  height: 80px;
+`
+
 const InterestDesc = styled.p`
   ${textStyles.title};
   color: ${colors.white};
@@ -142,7 +183,7 @@ const InterestDesc = styled.p`
   }
 
   @media (min-width: ${breakpoints.M}) {
-    padding: 0 50px;
+    padding: 0px 140px;
   }
 `
 
@@ -156,6 +197,7 @@ const InterestLabel = styled.p`
 
   @media (min-width: ${breakpoints.M}) {
     margin: 0 0 25px;
+    padding: 0px 140px;
   }
 `
 
