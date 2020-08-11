@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useRef } from "react"
 import styled, { keyframes, css } from "styled-components"
 import { Link } from "gatsby"
 
@@ -21,38 +21,41 @@ const Header = () => {
       : setMenuOpen("closed")
   }
 
-  const planeOneAudio = new Audio("quack.mp3")
-  const planeTwoAudio = new Audio("jeff.mp3")
-  const planeThreeAudio = new Audio("bully.mp3")
+  const planeOneAudio = useRef<HTMLAudioElement>(null)
+  const planeTwoAudio = useRef<HTMLAudioElement>(null)
+  const planeThreeAudio = useRef<HTMLAudioElement>(null)
 
   const playAudio = (index: number) => {
     if (
       planeOneAudio !== null &&
+      planeOneAudio.current !== null &&
       planeTwoAudio !== null &&
-      planeThreeAudio !== null
+      planeTwoAudio.current !== null &&
+      planeThreeAudio !== null &&
+      planeThreeAudio.current !== null
     ) {
       switch (index) {
         case 0:
-          planeOneAudio.play()
-          planeTwoAudio.pause()
-          planeTwoAudio.currentTime = 0
-          planeThreeAudio.pause()
-          planeThreeAudio.currentTime = 0
+          planeOneAudio.current.play()
+          planeTwoAudio.current.pause()
+          planeTwoAudio.current.currentTime = 0
+          planeThreeAudio.current.pause()
+          planeThreeAudio.current.currentTime = 0
 
           break
         case 1:
-          planeOneAudio.pause()
-          planeOneAudio.currentTime = 0
-          planeTwoAudio.play()
-          planeThreeAudio.pause()
-          planeThreeAudio.currentTime = 0
+          planeOneAudio.current.pause()
+          planeOneAudio.current.currentTime = 0
+          planeTwoAudio.current.play()
+          planeThreeAudio.current.pause()
+          planeThreeAudio.current.currentTime = 0
           break
         case 2:
-          planeOneAudio.pause()
-          planeOneAudio.currentTime = 0
-          planeTwoAudio.pause()
-          planeTwoAudio.currentTime = 0
-          planeThreeAudio.play()
+          planeOneAudio.current.pause()
+          planeOneAudio.current.currentTime = 0
+          planeTwoAudio.current.pause()
+          planeTwoAudio.current.currentTime = 0
+          planeThreeAudio.current.play()
           break
       }
       // tslint:disable-next-line: no-console
@@ -62,6 +65,15 @@ const Header = () => {
 
   return (
     <>
+      <audio ref={planeOneAudio}>
+        <source src="quack.mp3" type="audio/mpeg" />
+      </audio>
+      <audio ref={planeTwoAudio}>
+        <source src="bully.mp3" type="audio/mpeg" />
+      </audio>
+      <audio ref={planeThreeAudio}>
+        <source src="jeff.mp3" type="audio/mpeg" />
+      </audio>
       <Container>
         <Wrapper>
           <Logo color={colors.background} />
