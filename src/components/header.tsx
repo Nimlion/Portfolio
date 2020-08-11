@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react"
+import React, { useState, useRef, useEffect } from "react"
 import styled, { keyframes, css } from "styled-components"
 import { Link } from "gatsby"
 
@@ -13,6 +13,8 @@ import textStyles from "../styles/textStyles"
 import breakpoints from "../styles/breakpoints"
 
 const Header = () => {
+  const [scrollingDown, setScrollingDown] = useState(false)
+  const [scrollTop, setScrollTop] = useState(0)
   const [menuOpen, setMenuOpen] = useState("")
 
   const toggleMenu = () => {
@@ -63,6 +65,16 @@ const Header = () => {
     }
   }
 
+  useEffect(() => {
+    const onScroll = (e: any) => {
+      setScrollTop(e.target.documentElement.scrollTop)
+      setScrollingDown(e.target.documentElement.scrollTop > scrollTop)
+    }
+    window.addEventListener("scroll", onScroll)
+
+    return () => window.removeEventListener("scroll", onScroll)
+  }, [scrollTop])
+
   return (
     <>
       <audio ref={planeOneAudio}>
@@ -74,7 +86,7 @@ const Header = () => {
       <audio ref={planeThreeAudio}>
         <source src="jeff.mp3" type="audio/mpeg" />
       </audio>
-      <Container>
+      <Container scrolling={scrollingDown}>
         <Wrapper>
           <Logo color={colors.background} />
           <span onClick={toggleMenu}>
@@ -149,9 +161,9 @@ const swipeUp = keyframes`
   }
 `
 
-const Container = styled.header`
+const Container = styled.header<{ scrolling: boolean }>`
+  ${props => (props.scrolling ? `top: -75px;` : `top: 0;`)}
   background: ${colors.white};
-  opacity: 0.8;
   width: 100%;
   position: fixed;
   transition: 0.5s;
