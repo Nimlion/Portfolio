@@ -1,5 +1,8 @@
 import { createGlobalStyle } from "styled-components"
+
+// Styling
 import { fontFaces } from "./fonts"
+import colors from "./colors"
 
 const reset = createGlobalStyle`
   ${fontFaces};
@@ -14,6 +17,22 @@ const reset = createGlobalStyle`
     margin: 0;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+
+    ::-webkit-scrollbar-track {
+        background-color: ${colors.white}
+    }
+
+    ::-webkit-scrollbar {
+        width: 10px;
+        background-color: ${colors.white}
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-image: -webkit-linear-gradient(top,
+                                                ${colors.orange} 0%,
+                                                ${colors.white} 50%,
+                                                ${colors.blue} 100%);
+    }
   }
   article,
   aside,
