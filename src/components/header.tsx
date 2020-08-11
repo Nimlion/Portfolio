@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import styled, { keyframes, css } from "styled-components"
-import { Link, graphql } from "gatsby"
+import { Link } from "gatsby"
 
 // Components
 import MenuSVG from "./icons/menu"
@@ -96,33 +96,6 @@ const Header = () => {
 }
 
 export default Header
-
-export const soundQuery = graphql`
-  query {
-    prismicHomepage {
-      data {
-        hero_image {
-          alt
-          url
-        }
-        title {
-          text
-        }
-      }
-    }
-    allPrismicMenuSounds {
-      nodes {
-        data {
-          sounds {
-            menu_sound {
-              url
-            }
-          }
-        }
-      }
-    }
-  }
-`
 
 interface IActive {
   active: string
