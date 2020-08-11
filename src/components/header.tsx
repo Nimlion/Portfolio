@@ -162,7 +162,7 @@ const swipeUp = keyframes`
 `
 
 const Container = styled.header<{ scrolling: boolean }>`
-  ${props => (props.scrolling ? `top: -75px;` : `top: 0;`)}
+  ${props => (props.scrolling ? `top: -10%;` : `top: 0;`)}
   background: ${colors.white};
   width: 100%;
   position: fixed;
