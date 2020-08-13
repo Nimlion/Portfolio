@@ -6,7 +6,7 @@ export default {
   background: "#222222",
   white: "#FFFFFF",
 
-  blue: "#00ABEC",
-  green: "#96bb7c",
-  orange: "#FA8223",
+  accentColorOne: "#00ABEC",
+  accentColorTwo: "tomato",
+  accentColorThree: "#FA8223",
 }

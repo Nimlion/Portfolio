@@ -9,11 +9,11 @@ const reset = createGlobalStyle`
 
   * {
     ::-moz-selection {
-      background: ${colors.orange}
+      background: ${colors.accentColorThree}
     }
 
     ::selection {
-      background: ${colors.orange}
+      background: ${colors.accentColorThree}
     }
   }
 
@@ -39,9 +39,9 @@ const reset = createGlobalStyle`
 
     ::-webkit-scrollbar-thumb {
         background-image: -webkit-linear-gradient(top,
-                                                ${colors.orange} 0%,
+                                                ${colors.accentColorThree} 0%,
                                                 ${colors.white} 50%,
-                                                ${colors.blue} 100%);
+                                                ${colors.accentColorOne} 100%);
     }
   }
   article,

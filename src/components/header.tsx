@@ -340,7 +340,7 @@ const Plane = styled.div`
   }
 
   :nth-of-type(1) {
-    background-color: ${colors.blue};
+    background-color: ${colors.accentColorOne};
     opacity: 1;
     right: 50px;
     bottom: calc(32% - 50px);
@@ -348,7 +348,7 @@ const Plane = styled.div`
   }
 
   :nth-of-type(2) {
-    background-color: ${colors.orange};
+    background-color: ${colors.accentColorThree};
     opacity: 0.75;
     right: 100px;
     bottom: 32%;
@@ -356,7 +356,7 @@ const Plane = styled.div`
   }
 
   :nth-of-type(3) {
-    background-color: ${colors.green};
+    background-color: ${colors.accentColorTwo};
     opacity: 0.5;
     right: 150px;
     bottom: calc(32% + 50px);

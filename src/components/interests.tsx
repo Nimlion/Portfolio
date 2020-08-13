@@ -279,7 +279,7 @@ const Bullet = styled.input<{ element: IInterest }>`
   }
 
   :checked:after {
-    background-color: ${colors.blue};
+    background-color: ${colors.accentColorOne};
   }
 
   @media (min-width: ${breakpoints.M}) {
