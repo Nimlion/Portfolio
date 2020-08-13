@@ -24,6 +24,7 @@ const reset = createGlobalStyle`
     scroll-behavior: smooth;
   }
   body {
+    background-color: ${colors.background};
     margin: 0;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
