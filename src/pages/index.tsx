@@ -3,6 +3,7 @@ import { graphql } from "gatsby"
 
 // Components
 import SEO from "../components/seo"
+import Quotes from "../components/quote"
 import Layout from "../components/layout"
 import Parallax from "../components/parallax"
 import Interests from "../components/interests"
@@ -19,6 +20,7 @@ const IndexPage = (prismicData: any) => {
         title={prismicData.data.allPrismicInterests.nodes[0].data.title[0].text}
         interests={prismicData.data.allPrismicInterests.nodes[0].data.interest}
       />
+      <Quotes {...prismicData.data.allPrismicQuotes.nodes[0].data} />
       <br />
       <br />
       <br />
@@ -146,6 +148,19 @@ export const query = graphql`
         }
         title {
           text
+        }
+      }
+    }
+    allPrismicQuotes {
+      nodes {
+        data {
+          backdrop {
+            url
+          }
+          quotes {
+            text
+            author
+          }
         }
       }
     }
