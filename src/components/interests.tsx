@@ -91,18 +91,17 @@ const Interests: React.FC<IInterests> = ({ title, interests }: IInterests) => {
 
 export default Interests
 
-const Container = styled.div`
+export const Container = styled.div`
   background: ${colors.background};
   width: 100%;
+  margin: 100px auto;
 `
 
-const Wrapper = styled.div`
+export const Wrapper = styled.div`
   ${grid}
-  margin: 0 auto;
-  padding: 100px 0;
 
   @media (min-width: ${breakpoints.S}) {
-    padding: 150px 0;
+    margin: 150px auto;
   }
 `
 
