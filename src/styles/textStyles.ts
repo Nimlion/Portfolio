@@ -79,6 +79,10 @@ export default {
     font-size: 14px;
     line-height: 24px;
 
+    @media (min-width: ${breakpoints.M}) {
+      font-size: 16px;
+    }
+
     @media (min-width: ${breakpoints.L}) {
       font-size: 20px;
     }

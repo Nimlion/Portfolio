@@ -105,7 +105,7 @@ export const Wrapper = styled.div`
   }
 `
 
-const Title = styled.h3`
+export const Title = styled.h3`
   ${textStyles.title};
   color: ${colors.white};
   margin: 0 0 50px;
