@@ -1,0 +1,60 @@
+{
+    "Main": {
+        "uid": {
+            "type": "UID",
+            "config": {
+                "label": "skills"
+            }
+        },
+        "title": {
+            "type": "StructuredText",
+            "config": {
+                "single": "heading3",
+                "label": "title"
+            }
+        },
+        "body1": {
+            "type": "Slices",
+            "fieldset": "Slice zone",
+            "config": {
+                "labels": {
+                    "category": []
+                },
+                "choices": {
+                    "category": {
+                        "type": "Slice",
+                        "fieldset": "Category",
+                        "description": "category of a skill",
+                        "icon": "book",
+                        "display": "list",
+                        "non-repeat": {
+                            "category_name": {
+                                "type": "StructuredText",
+                                "config": {
+                                    "single": "heading4",
+                                    "label": "category name"
+                                }
+                            }
+                        },
+                        "repeat": {
+                            "item_image": {
+                                "type": "Image",
+                                "config": {
+                                    "constraint": {},
+                                    "thumbnails": [],
+                                    "label": "item image"
+                                }
+                            },
+                            "item": {
+                                "type": "Text",
+                                "config": {
+                                    "label": "item"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
