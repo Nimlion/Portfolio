@@ -40,3 +40,17 @@ export interface IQuote {
   text: string
   author: string
 }
+
+export interface ISkills {
+  title: string
+  skills: ISkill[]
+}
+
+export interface ISkill {
+  primary: any
+  items: ISkillItem[]
+}
+
+export interface ISkillItem {
+  item: string
+}
