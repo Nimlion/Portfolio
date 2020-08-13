@@ -4,6 +4,7 @@
 
 export default {
   background: "#222222",
+  darkGrey: "#333333",
   white: "#FFFFFF",
   shadow: "rgba(0, 0, 0, 0.75)",
 
