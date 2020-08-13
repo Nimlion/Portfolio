@@ -80,7 +80,7 @@ interface IScroll {
 }
 
 const blink = keyframes`
-  from{border-right-color: ${colors.orange};}
+  from{border-right-color: ${colors.accentColorThree};}
   to{border-right-color: transparent;}
 `
 
