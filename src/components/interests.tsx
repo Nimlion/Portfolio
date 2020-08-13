@@ -134,7 +134,7 @@ const Row = styled.div`
     height: 550px;
   }
 
-  @media (min-width: ${breakpoints.L}) {
+  @media (min-width: ${breakpoints.XL}) {
     height: 750px;
   }
 `
@@ -147,7 +147,7 @@ const IconHolder = styled.span<{ active: boolean }>`
   cursor: pointer;
   transition: 0.5s;
 
-  ${props => (props.active ? `` : `top: 100%;`)};
+  ${props => (props.active ? `` : `opacity: 0; cursor: default;`)};
 
   :nth-of-type(1) {
     left: 55px;
@@ -166,7 +166,10 @@ const IconHolder = styled.span<{ active: boolean }>`
 const ArrowIcon = styled(ArrowSVG)`
   width: 48px;
   height: 80px;
-  filter: drop-shadow(3px 3px 5px rgba(0, 0, 0, 0.75));
+
+  :hover {
+    filter: drop-shadow(3px 3px 5px rgba(0, 0, 0, 0.75));
+  }
 `
 
 const InterestDesc = styled.p`
