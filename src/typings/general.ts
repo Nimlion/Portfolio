@@ -14,6 +14,10 @@ export interface IImage {
   alt: string
 }
 
+export interface IPrismicImage {
+  url: string
+}
+
 export interface IInterests {
   title: string
   interests: IInterest[]
@@ -25,4 +29,14 @@ export interface IInterest {
   image: {
     url: string
   }
+}
+
+export interface IQuotes {
+  quotes: IQuote[]
+  backdrop?: IPrismicImage
+}
+
+export interface IQuote {
+  text: string
+  author: string
 }
