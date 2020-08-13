@@ -5,6 +5,7 @@
 export default {
   background: "#222222",
   white: "#FFFFFF",
+  shadow: "rgba(0, 0, 0, 0.75)",
 
   accentColorOne: "#00ABEC",
   accentColorTwo: "tomato",
