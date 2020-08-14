@@ -1,0 +1,73 @@
+{
+    "Main": {
+        "uid": {
+            "type": "UID",
+            "config": {
+                "label": "uid"
+            }
+        },
+        "block_title": {
+            "type": "StructuredText",
+            "config": {
+                "single": "heading3",
+                "label": "block title",
+                "placeholder": "title"
+            }
+        },
+        "body": {
+            "type": "Slices",
+            "fieldset": "Slice zone",
+            "config": {
+                "labels": {
+                    "job": []
+                },
+                "choices": {
+                    "job": {
+                        "type": "Slice",
+                        "fieldset": "job",
+                        "description": "job info",
+                        "icon": "work",
+                        "display": "list",
+                        "non-repeat": {},
+                        "repeat": {
+                            "backdrop": {
+                                "type": "Image",
+                                "config": {
+                                    "constraint": {},
+                                    "thumbnails": [],
+                                    "label": "backdrop"
+                                }
+                            },
+                            "logo": {
+                                "type": "Image",
+                                "config": {
+                                    "constraint": {},
+                                    "thumbnails": [],
+                                    "label": "logo"
+                                }
+                            },
+                            "company_name": {
+                                "type": "Text",
+                                "config": {
+                                    "label": "company name"
+                                }
+                            },
+                            "job_title": {
+                                "type": "Text",
+                                "config": {
+                                    "label": "job title"
+                                }
+                            },
+                            "period_duration": {
+                                "type": "Text",
+                                "config": {
+                                    "label": "period duration"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

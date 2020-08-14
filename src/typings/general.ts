@@ -54,3 +54,15 @@ export interface ISkill {
 export interface ISkillItem {
   item: string
 }
+export interface IJobs {
+  title: string
+  items: IJobInfo[]
+}
+
+export interface IJobInfo {
+  backdrop: IPrismicImage
+  company_name: string
+  job_title: string
+  logo: IPrismicImage
+  period_duration: string
+}
