@@ -36,7 +36,7 @@ export default {
       font-size: 32px;
     }
     @media (min-width: ${breakpoints.L}) {
-      font-size: 40px;
+      font-size: 48px;
     }
 
     @media (min-width: ${breakpoints.XL}) {
@@ -44,37 +44,42 @@ export default {
     }
   `,
   highlight: css`
-    font-family: ${fonts.secondary};
-    font-weight: ${fontWeights.medium};
-    font-size: 16px;
+    font-family: ${fonts.primary};
+    font-weight: ${fontWeights.bold};
+    font-size: 22px;
     line-height: 1;
-    letter-spacing: -1px;
+    letter-spacing: 1px;
+
+    @media (min-width: ${breakpoints.M}) {
+      font-size: 26px;
+    }
 
     @media (min-width: ${breakpoints.L}) {
-      font-size: 22px;
+      font-size: 30px;
+    }
+
+    @media (min-width: ${breakpoints.XL}) {
+      font-size: 34px;
+    }
+  `,
+  plainHeavy: css`
+    font-family: ${fonts.secondary};
+    font-weight: ${fontWeights.semiBold};
+    font-size: 22px;
+    line-height: 26px;
+
+    @media (min-width: ${breakpoints.L}) {
+      font-size: 26px;
+      line-height: 28px;
     }
 
     @media (min-width: ${breakpoints.XL}) {
       font-size: 30px;
-    }
-  `,
-  plainHeavy: css`
-    font-family: ${fonts.primary};
-    font-weight: ${fontWeights.semiBold};
-    font-size: 16px;
-    line-height: 24px;
-
-    @media (min-width: ${breakpoints.L}) {
-      font-size: 20px;
-    }
-
-    @media (min-width: ${breakpoints.XL}) {
-      font-size: 24px;
-      line-height: 32px;
+      line-height: 34px;
     }
   `,
   plainSubtle: css`
-    font-family: ${fonts.secondary};
+    font-family: ${fonts.primary};
     font-weight: ${fontWeights.medium};
     font-size: 14px;
     line-height: 24px;
