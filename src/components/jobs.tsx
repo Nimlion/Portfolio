@@ -8,25 +8,27 @@ import breakpoints from "../styles/breakpoints"
 
 // Components
 import { Container, Wrapper, Title } from "./interests"
-import { IPrismicImage } from "src/typings/general"
 
 // Typings
+import { IPrismicImage, IJobs, IJobInfo } from "../typings/general"
 
-const Jobs: React.FC = () => (
+const Jobs: React.FC<IJobs> = ({ title, items }: IJobs) => (
   <Container>
     <Wrapper>
-      <Title>Worked for</Title>
+      <Title>{title}</Title>
       <JobBlocks>
-        <JobBlock>
-          <Subtitle>Jungle Minds</Subtitle>
-          <JobBox url="ocean.jpg">
-            <Logo src="ocean.jpg" alt="logo of Jungle Minds" />
-            <DescBox>
-              <JobTitle>Software development intern</JobTitle>
-              <Duration>03-2020 / 07-2020</Duration>
-            </DescBox>
-          </JobBox>
-        </JobBlock>
+        {items.map((job: IJobInfo, key: number) => (
+          <JobBlock key={key}>
+            <Subtitle>{job.company_name}</Subtitle>
+            <JobBox url={job.backdrop.url}>
+              <Logo src={job.logo.url} alt={`logo of ${job.company_name}`} />
+              <DescBox>
+                <JobTitle>{job.job_title}</JobTitle>
+                <Duration>{job.period_duration}</Duration>
+              </DescBox>
+            </JobBox>
+          </JobBlock>
+        ))}
       </JobBlocks>
     </Wrapper>
   </Container>
@@ -48,18 +50,18 @@ const JobBlock = styled.div`
   }
 
   @media (min-width: ${breakpoints.M}) {
-    width: calc(50% - 25px);
+    width: calc(50% - 60px);
 
     :not(:nth-of-type(1)) {
       margin: 0;
     }
 
     :nth-of-type(even) {
-      margin-left: 25px;
+      margin-left: 60px;
     }
 
     :nth-of-type(odd) {
-      margin-right: 25px;
+      margin-right: 60px;
     }
 
     :nth-child(n + 3) {
@@ -100,13 +102,13 @@ const Logo = styled.img`
   width: 50%;
   height: 100%;
   object-fit: cover;
-  transform: translateX(-100%);
+  transform: translateX(-110%);
   transition: 0.5s;
 `
 
 const DescBox = styled.div`
-  background: rgba(${colors.accentOne.rgba}, 0.5);
-  transform: translateY(-100%);
+  background: ${colors.shadow};
+  transform: translateY(-110%);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -138,6 +140,8 @@ const JobBox = styled.div<IPrismicImage>`
   width: 100%;
   height: 150px;
   background-image: url(${props => (props.url ? `${props.url}` : ``)});
+  background-position: center;
+  background-repeat: no-repeat;
   background-size: cover;
   overflow: hidden;
   box-shadow: 12px 10px 3px ${colors.shadow};
@@ -150,6 +154,6 @@ const JobBox = styled.div<IPrismicImage>`
   }
 
   @media (min-width: ${breakpoints.S}) {
-    height: 240px;
+    height: 225px;
   }
 `
