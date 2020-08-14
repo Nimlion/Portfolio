@@ -3,6 +3,7 @@ import { graphql } from "gatsby"
 
 // Components
 import SEO from "../components/seo"
+import Jobs from "../components/jobs"
 import Quotes from "../components/quote"
 import Layout from "../components/layout"
 import Skills from "../components/skills"
@@ -25,6 +26,12 @@ const IndexPage = (prismicData: any) => {
       <Skills
         title={prismicData.data.allPrismicSkills.nodes[0].data.title[0].text}
         skills={prismicData.data.allPrismicSkills.nodes[0].data.body1}
+      />
+      <Jobs
+        title={
+          prismicData.data.allPrismicJobs.nodes[0].data.block_title[0].text
+        }
+        items={prismicData.data.allPrismicJobs.nodes[0].data.body[0].items}
       />
       <br />
       <br />
@@ -199,6 +206,28 @@ export const query = graphql`
             label
             image {
               url
+            }
+          }
+        }
+      }
+    }
+    allPrismicJobs {
+      nodes {
+        data {
+          block_title {
+            text
+          }
+          body {
+            items {
+              backdrop {
+                url
+              }
+              company_name
+              job_title
+              logo {
+                url
+              }
+              period_duration
             }
           }
         }
