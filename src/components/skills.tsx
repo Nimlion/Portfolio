@@ -68,7 +68,7 @@ const SkillBar = styled.div`
   color: ${colors.white};
   padding: 25px;
   background-color: ${colors.darkGrey};
-  border-bottom: 3px solid ${colors.accentColorOne};
+  border-bottom: 3px solid ${colors.accentOne.hex};
   cursor: pointer;
 `
 

@@ -32,7 +32,7 @@ const Background = styled.div<{ url: string }>`
   flex-direction: column;
   padding: 75px 30px;
   background: ${props =>
-    props.url ? `url(${props.url});` : `${colors.accentColorTwo}`};
+    props.url ? `url(${props.url});` : `${colors.accentTwo.hex}`};
   background-position: center;
   background-size: cover;
   background-attachment: fixed;

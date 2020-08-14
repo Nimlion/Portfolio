@@ -8,7 +8,16 @@ export default {
   white: "#FFFFFF",
   shadow: "rgba(0, 0, 0, 0.75)",
 
-  accentColorOne: "#00ABEC",
-  accentColorTwo: "tomato",
-  accentColorThree: "#FA8223",
+  accentOne: {
+    hex: "#00ABEC",
+    rgba: "0, 171, 236",
+  },
+  accentTwo: {
+    hex: "#ff6347",
+    rgba: "255, 99, 71",
+  },
+  accentThree: {
+    hex: "#FA8223",
+    rgba: "250, 130, 35",
+  },
 }
