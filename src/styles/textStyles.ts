@@ -102,13 +102,5 @@ export default {
     font-weight: ${fontWeights.medium};
     text-decoration: none;
     cursor: pointer;
-
-    span {
-      position: relative;
-    }
-
-    :hover {
-      text-decoration: underline;
-    }
   `,
 }
