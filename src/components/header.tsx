@@ -12,6 +12,11 @@ import colors from "../styles/colors"
 import textStyles from "../styles/textStyles"
 import breakpoints from "../styles/breakpoints"
 
+export const EasterEggFound = () => {
+  // tslint:disable-next-line: no-console
+  console.log("Congratulations you found an easter egg.")
+}
+
 const Header = () => {
   const [scrollingDown, setScrollingDown] = useState(false)
   const [scrollTop, setScrollTop] = useState(0)
@@ -60,8 +65,7 @@ const Header = () => {
           planeThreeAudio.current.play()
           break
       }
-      // tslint:disable-next-line: no-console
-      console.log("Congratulations you found an easter egg.")
+      EasterEggFound()
     }
   }
 

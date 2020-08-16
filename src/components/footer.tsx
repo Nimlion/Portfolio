@@ -14,6 +14,9 @@ import InstaSVG from "./icons/instagram"
 import TwitterSVG from "./icons/twitter"
 import GitHubSVG from "./icons/github"
 
+// Functions
+import { EasterEggFound } from "./header"
+
 const Footer: React.FC = () => (
   <Container>
     <Wrapper>
@@ -63,7 +66,7 @@ const Footer: React.FC = () => (
         © {new Date().getFullYear()} Built & Designed by: Hosam Darwish
       </Copy>
     </Wrapper>
-    <BottomStroke />
+    <BottomStroke onMouseEnter={() => EasterEggFound()} />
   </Container>
 )
 
