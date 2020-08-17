@@ -9,6 +9,7 @@ import Layout from "../components/layout"
 import Skills from "../components/skills"
 import Parallax from "../components/parallax"
 import Interests from "../components/interests"
+import TextBlock from "../components/textBlock"
 
 const IndexPage = (prismicData: any) => {
   return (
@@ -18,6 +19,7 @@ const IndexPage = (prismicData: any) => {
         title={prismicData.data.prismicHomepage.data.title.text}
         imgURL={prismicData.data.prismicHomepage.data.hero_image.url}
       />
+      <TextBlock {...prismicData.data.allPrismicBiography.nodes[0].data} />
       <Interests
         title={prismicData.data.allPrismicInterests.nodes[0].data.title[0].text}
         interests={prismicData.data.allPrismicInterests.nodes[0].data.interest}
@@ -116,6 +118,25 @@ export const query = graphql`
               }
               period_duration
             }
+          }
+        }
+      }
+    }
+    allPrismicBiography {
+      nodes {
+        data {
+          content {
+            text
+            spans {
+              end
+              start
+              data {
+                url
+              }
+            }
+          }
+          title {
+            text
           }
         }
       }
