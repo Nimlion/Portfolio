@@ -40,7 +40,6 @@ const Footer: React.FC = () => {
     }
   `)
   data = data.allPrismicFooter.nodes[0].data
-  console.log(data)
 
   return (
     <Container>
