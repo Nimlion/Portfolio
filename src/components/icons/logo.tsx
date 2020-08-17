@@ -21,7 +21,7 @@ const LogoSVG = ({ className, color }: IIcon) => (
     />
     <path
       stroke={color}
-      stroke-width="5"
+      strokeWidth="5"
       d="M138.5 456.447h2259v15.175h-2259z"
     />
   </SVG>
