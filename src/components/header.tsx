@@ -92,7 +92,9 @@ const Header = () => {
       </audio>
       <Container scrolling={scrollingDown}>
         <Wrapper>
-          <Logo color={colors.background} />
+          <Link to="/">
+            <Logo color={colors.background} />
+          </Link>
           <span onClick={toggleMenu}>
             <Menu color={colors.background} />
           </span>
@@ -166,7 +168,7 @@ const swipeUp = keyframes`
 `
 
 const Container = styled.header<{ scrolling: boolean }>`
-  ${props => (props.scrolling ? `top: -10%;` : `top: 0;`)}
+  ${props => (props.scrolling ? `top: -20%;` : `top: 0;`)}
   background: ${colors.white};
   width: 100%;
   position: fixed;
@@ -186,16 +188,20 @@ const Wrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   margin: 0 auto;
-  padding: 10px 20px;
+  padding: 0 20px;
+
+  @media (min-width: ${breakpoints.XL}) {
+    padding: 5px 40px;
+  }
 `
 
 const Logo = styled(LogoSVG)`
-  height: 50px;
-  width: 150px;
+  height: 75px;
+  width: 200px;
 
   @media (min-width: ${breakpoints.XL}) {
-    height: 75px;
-    width: 225px;
+    height: 90px;
+    width: 250px;
   }
 `
 
