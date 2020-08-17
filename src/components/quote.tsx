@@ -48,7 +48,7 @@ const Background = styled.div<{ url: string }>`
 `
 
 const Quote = styled.h3`
-  ${textStyles.titleLoud};
+  ${textStyles.title};
   text-transform: uppercase;
   margin: 0;
   color: ${colors.white};
@@ -57,7 +57,7 @@ const Quote = styled.h3`
 `
 
 const Author = styled.h6`
-  ${textStyles.title};
+  ${textStyles.highlight};
   font-weight: 100;
   margin: 25px 0 0 auto;
   color: ${colors.white};
