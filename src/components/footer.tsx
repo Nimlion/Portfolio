@@ -1,4 +1,5 @@
 import React from "react"
+import { graphql, useStaticQuery } from "gatsby"
 import styled, { keyframes } from "styled-components"
 
 // Styling
@@ -9,66 +10,91 @@ import breakpoints from "../styles/breakpoints"
 
 // Components
 import { Title } from "./interests"
-import PCSVG from "./icons/pc"
-import InstaSVG from "./icons/instagram"
-import TwitterSVG from "./icons/twitter"
-import GitHubSVG from "./icons/github"
 
 // Functions
 import { EasterEggFound } from "./header"
 
-const Footer: React.FC = () => (
-  <Container>
-    <Wrapper>
-      <Title>Contact</Title>
-      <InfoBlock>
-        <InfoContainer>
-          <PCIllustration />
-        </InfoContainer>
-        <InfoDetails>
-          <ExternalLink href="tel:0630318886">0630318886</ExternalLink>
-          <ExternalLink href="mailto:hd.006@hotmail.com?subject=We would like to contact you&body=Dear Hosam,">
-            hd.006@hotmail.com
-          </ExternalLink>
-          <ExternalLink
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://www.google.com/maps/place/Amsterdam/@52.3545828,4.7638781,11z/data=!3m1!4b1!4m5!3m4!1s0x47c63fb5949a7755:0x6600fd4cb7c0af8d!8m2!3d52.3666969!4d4.8945398"
-          >
-            Amsterdam, The Netherlands
-          </ExternalLink>
-        </InfoDetails>
-      </InfoBlock>
-      <SocialsBlock>
-        <IconContainer
-          href="https://github.com/Nimlion"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          <GitHubSVG color={colors.white} />
-        </IconContainer>
-        <IconContainer
-          href="https://twitter.com/GamerTweeter16"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          <TwitterSVG color={colors.white} />
-        </IconContainer>
-        <IconContainer
-          href="https://www.instagram.com/hosam.darwi/"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          <InstaSVG color={colors.white} />
-        </IconContainer>
-      </SocialsBlock>
-      <Copy>
-        © {new Date().getFullYear()} Built & Designed by: Hosam Darwish
-      </Copy>
-    </Wrapper>
-    <BottomStroke onMouseEnter={() => EasterEggFound()} />
-  </Container>
-)
+const Footer: React.FC = () => {
+  let data = useStaticQuery(graphql`
+    {
+      allPrismicFooter {
+        nodes {
+          data {
+            email
+            phonenumber
+            social_media {
+              link
+              logo {
+                url
+              }
+            }
+            title {
+              text
+            }
+            image {
+              url
+            }
+          }
+        }
+      }
+    }
+  `)
+  data = data.allPrismicFooter.nodes[0].data
+  console.log(data)
+
+  return (
+    <Container>
+      <Wrapper>
+        <Title>{data.title[0].text}</Title>
+        <InfoBlock>
+          <InfoContainer>
+            <ContactIllustration
+              src={data.image.url}
+              alt="contact illustration"
+            />
+          </InfoContainer>
+          <InfoDetails>
+            <ExternalLink href={`tel:${data.phonenumber}`}>
+              {data.phonenumber}
+            </ExternalLink>
+            <ExternalLink
+              href={`mailto:${data.email}?subject=We would like to contact you&body=Dear Hosam,`}
+            >
+              {data.email}
+            </ExternalLink>
+            <ExternalLink
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://www.google.com/maps/place/Amsterdam/@52.3545828,4.7638781,11z/data=!3m1!4b1!4m5!3m4!1s0x47c63fb5949a7755:0x6600fd4cb7c0af8d!8m2!3d52.3666969!4d4.8945398"
+            >
+              Amsterdam, The Netherlands
+            </ExternalLink>
+          </InfoDetails>
+        </InfoBlock>
+        <SocialsBlock>
+          {data.social_media.map((social: any, key: number) => (
+            <IconContainer
+              key={key}
+              href={social.link}
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <SocialMediaIcon
+                src={social.logo.url}
+                alt="socialmedia icon"
+                color={colors.white}
+              />
+            </IconContainer>
+          ))}
+        </SocialsBlock>
+        <Copy>
+          © {new Date().getFullYear()} Built & Designed by: Hosam Darwish
+        </Copy>
+      </Wrapper>
+      <BottomStroke onMouseEnter={() => EasterEggFound()} />
+    </Container>
+  )
+}
 
 export default Footer
 const rainbow = keyframes`
@@ -186,7 +212,7 @@ const InfoDetails = styled.div`
   }
 `
 
-const PCIllustration = styled(PCSVG)`
+const ContactIllustration = styled.img`
   width: 100%;
   max-width: 350px;
 
@@ -210,6 +236,15 @@ const SocialsBlock = styled.div`
   }
 `
 
+const SocialMediaIcon = styled.img`
+  width: 40px;
+  height: auto;
+
+  @media (min-width: ${breakpoints.M}) {
+    width: auto;
+  }
+`
+
 const IconContainer = styled.a`
   position: relative;
   width: auto;
@@ -221,18 +256,9 @@ const IconContainer = styled.a`
     margin: 0 25px;
   }
 
-  svg {
-    width: 40px;
-    height: auto;
-  }
-
   @media (min-width: ${breakpoints.M}) {
     :nth-of-type(2) {
       margin: 0 50px;
-    }
-
-    svg {
-      width: auto;
     }
   }
 
