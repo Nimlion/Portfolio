@@ -41,7 +41,7 @@ module.exports = {
         background_color: `#00ABEC`,
         theme_color: `#00ABEC`,
         display: `minimal-ui`,
-        icon: `src/images/favicon.png`,
+        icon: `src/images/favicon.jpg`,
       },
     },
     `gatsby-plugin-styled-components`,
