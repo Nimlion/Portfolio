@@ -166,9 +166,13 @@ const IconHolder = styled.span<{ active: boolean }>`
 const ArrowIcon = styled(ArrowSVG)`
   width: 48px;
   height: 80px;
+  opacity: 0.6;
+  transition: 0.3s;
+  filter: drop-shadow(3px 3px 5px ${colors.shadow});
 
   :hover {
-    filter: drop-shadow(3px 3px 5px rgba(0, 0, 0, 0.75));
+    opacity: 1;
+    transform: scale(1.05);
   }
 `
 
@@ -178,7 +182,7 @@ const InterestDesc = styled.p`
   transform: translateY(250px);
   transition-timing-function: cubic-bezier(0, 1.17, 1, 1);
   margin: 0;
-  margin-top: -55%;
+  margin-top: -50%;
   padding: 0 20px;
   overflow: hidden;
   opacity: 0;
@@ -186,11 +190,15 @@ const InterestDesc = styled.p`
   text-shadow: 5px 5px 6px rgba(0, 0, 0, 0.75);
 
   @media (min-width: ${breakpoints.XS}) {
-    margin-top: -10%;
+    margin-top: -12%;
   }
 
   @media (min-width: ${breakpoints.M}) {
     padding: 0px 140px;
+  }
+
+  @media (min-width: ${breakpoints.L}) {
+    margin-top: -14%;
   }
 `
 
