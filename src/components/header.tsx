@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react"
 import styled, { keyframes, css } from "styled-components"
-import { Link } from "gatsby"
+import { Link, graphql, useStaticQuery } from "gatsby"
 
 // Components
 import MenuSVG from "./icons/menu"
@@ -27,6 +27,32 @@ const Header = () => {
       ? setMenuOpen("open")
       : setMenuOpen("closed")
   }
+
+  let data = useStaticQuery(graphql`
+    {
+      allPrismicHeader {
+        nodes {
+          data {
+            menu_links {
+              internal_link
+              label
+            }
+            menusound_1 {
+              url
+            }
+            menusound_2 {
+              url
+            }
+            menusound_3 {
+              url
+            }
+          }
+        }
+      }
+    }
+  `)
+
+  data = data.allPrismicHeader.nodes[0].data
 
   const planeOneAudio = useRef<HTMLAudioElement>(null)
   const planeTwoAudio = useRef<HTMLAudioElement>(null)
@@ -82,13 +108,13 @@ const Header = () => {
   return (
     <>
       <audio ref={planeOneAudio}>
-        <source src="quack.mp3" type="audio/mpeg" />
+        <source src={data.menusound_1.url} type="audio/mpeg" />
       </audio>
       <audio ref={planeTwoAudio}>
-        <source src="bully.mp3" type="audio/mpeg" />
+        <source src={data.menusound_2.url} type="audio/mpeg" />
       </audio>
       <audio ref={planeThreeAudio}>
-        <source src="jeff.mp3" type="audio/mpeg" />
+        <source src={data.menusound_3.url} type="audio/mpeg" />
       </audio>
       <Container scrolling={scrollingDown ? "1" : "0"}>
         <Wrapper>
@@ -110,10 +136,11 @@ const Header = () => {
             </PlaneContainer>
           </Block>
           <Block>
-            <MenuLink to="/">- Home</MenuLink>
-            <MenuLink to="/portfolio">- Portfolio</MenuLink>
-            <MenuLink to="/work">- Work</MenuLink>
-            <MenuLink to="/contact">- Contact</MenuLink>
+            {data.menu_links.map((link: any, key: number) => (
+              <MenuLink key={key} to={link.internal_link}>
+                - {link.label}
+              </MenuLink>
+            ))}
           </Block>
         </MenuRow>
 
