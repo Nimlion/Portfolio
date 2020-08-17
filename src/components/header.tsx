@@ -90,7 +90,7 @@ const Header = () => {
       <audio ref={planeThreeAudio}>
         <source src="jeff.mp3" type="audio/mpeg" />
       </audio>
-      <Container scrolling={scrollingDown}>
+      <Container scrolling={scrollingDown ? "1" : "0"}>
         <Wrapper>
           <Link to="/">
             <Logo color={colors.background} />
@@ -167,8 +167,9 @@ const swipeUp = keyframes`
   }
 `
 
-const Container = styled.header<{ scrolling: boolean }>`
-  ${props => (props.scrolling ? `top: -20%;` : `top: 0;`)}
+// when using a boolean I get warnings so hence for I used a string
+const Container = styled.header<{ scrolling: string }>`
+  ${props => (props.scrolling === "1" ? `top: -20%;` : `top: 0;`)}
   background: ${colors.white};
   width: 100%;
   position: fixed;
