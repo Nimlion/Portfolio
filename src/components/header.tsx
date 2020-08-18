@@ -295,7 +295,7 @@ const MenuContainer = styled.div<IActive>`
   }
 `
 
-const Exit = styled(CloseSVG)`
+export const Exit = styled(CloseSVG)`
   cursor: pointer;
   position: absolute;
   top: 25px;
