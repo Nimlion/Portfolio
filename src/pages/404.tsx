@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { useStaticQuery, graphql } from "gatsby"
 import styled, { keyframes } from "styled-components"
 
 // Styling
@@ -9,8 +10,8 @@ import breakpoints from "../styles/breakpoints"
 // Components
 import SEO from "../components/seo"
 import Layout from "../components/layout"
+import CloseSVG from "../components/icons/close"
 import { Wrapper } from "../components/interests"
-import { Exit } from "../components/header"
 import { EasterEggFound } from "../components/header"
 
 const NotFoundPage = () => {
@@ -19,34 +20,51 @@ const NotFoundPage = () => {
   const [keyThree, setKeyThree] = useState(0)
 
   if (keyOne === 0 && keyTwo === 0 && keyThree === 0) {
+    // tslint:disable-next-line: no-console
     console.log("hint: up == down.")
   }
+
+  let data = useStaticQuery(graphql`
+    {
+      allPrismicPuns {
+        nodes {
+          data {
+            title
+            puns {
+              pun
+            }
+          }
+        }
+      }
+    }
+  `)
+  data = data.allPrismicPuns.nodes[0].data
 
   const resetKeys = () => {
     setKeyOne(0)
     setKeyTwo(0)
     setKeyThree(0)
+    document.getElementsByTagName("html")[0].style.overflow = "auto"
   }
-
   const increaseKeyOne = () => {
-    keyOne < 360 ? setKeyOne(prevState => prevState + 20) : setKeyOne(0)
+    keyOne < 360 ? setKeyOne(prevState => prevState + 15) : setKeyOne(0)
   }
 
   const increaseKeyTwo = () => {
-    keyTwo < 360 ? setKeyTwo(prevState => prevState + 20) : setKeyTwo(0)
+    keyTwo < 360 ? setKeyTwo(prevState => prevState + 15) : setKeyTwo(0)
   }
 
   const increaseKeyThree = () => {
-    keyThree < 360 ? setKeyThree(prevState => prevState + 20) : setKeyThree(0)
+    keyThree < 360 ? setKeyThree(prevState => prevState + 15) : setKeyThree(0)
   }
 
   const checkCombo = () => {
     if (keyOne === 180 && keyTwo === 180 && keyThree === 180) {
+      document.getElementsByTagName("html")[0].style.overflow = "hidden"
       EasterEggFound()
       return true
-    } else {
-      return false
     }
+    return false
   }
 
   return (
@@ -71,29 +89,17 @@ const NotFoundPage = () => {
         </UnderTitle>
 
         {checkCombo() && (
-          <Credits>
-            <Wrapper>
-              <span onClick={() => resetKeys()}>
-                <Exit color={colors.white} />
-              </span>
-              <UnderTitle>Hello you pro discoverer!</UnderTitle>
-              <UnderTitle>Hope you like puns ; )</UnderTitle>
-              <Pun active={checkCombo()}>
-                My dad farted in an elevator, it was wrong on so many levels
-              </Pun>
-              <Pun active={checkCombo()}>
-                I tried to sue the airline for losing my luggage. I lost my case
-              </Pun>
-              <Pun active={checkCombo()}>
-                There was a kidnapping at school yesterday. Don’t worry, though
-                - he woke up
-              </Pun>
-              <Pun active={checkCombo()}>
-                Two fish are in a tank, one says to the other "how do you drive
-                this thing?"
-              </Pun>
-            </Wrapper>
-          </Credits>
+          <HiddenScroll>
+            <Papyrus>
+              <IconHolder onClick={() => resetKeys()}>
+                <CloseBtn color={colors.white} />
+              </IconHolder>
+              <UnderTitle>{data.title}</UnderTitle>
+              {data.puns.map((pun: any, key: number) => (
+                <Pun key={key}>{pun.pun}</Pun>
+              ))}
+            </Papyrus>
+          </HiddenScroll>
         )}
       </Wrapper>
     </Layout>
@@ -104,12 +110,9 @@ export default NotFoundPage
 
 const GoBig = keyframes`
   0% {
-    width: 0%;
-  border: 5px solid ${colors.accentThree.hex};
-    height: 0%;
+    height: 0;
   }
   100% {
-    width: 100%;
     height: 100%;
   }
 `
@@ -122,7 +125,7 @@ const Title = styled.h1`
   text-shadow: 4px 4px ${colors.accentOne.hex},
     8px 8px ${colors.accentThree.hex};
 
-  @media (min-width: ${breakpoints.S}) {
+  @media (min-width: ${breakpoints.M}) {
     margin-top: 15%;
     text-shadow: 6px 6px ${colors.accentOne.hex},
       12px 12px ${colors.accentThree.hex};
@@ -150,7 +153,7 @@ const Key = styled.span<{ grade: number }>`
   -ms-user-select: none; /* Internet Explorer/Edge */
   user-select: none;
   margin-right: 5px;
-  opacity: 0.9;
+  ${props => (props.grade === 180 ? `opacity: 1;` : `opacity: 0.85`)};
 
   transform: ${props =>
     props.grade ? `rotate(${props.grade}deg)` : `rotate(0deg)`};
@@ -160,8 +163,9 @@ const Key = styled.span<{ grade: number }>`
   }
 `
 
-const Credits = styled.span`
+const HiddenScroll = styled.span`
   position: fixed;
+  display: flex;
   height: 5px;
   background: ${colors.background};
   left: 0;
@@ -169,15 +173,76 @@ const Credits = styled.span`
   z-index: 1;
   margin: auto;
   overflow: auto;
-  top: 50%;
-  transform: translate(0, -50%);
-  animation: 0.5s ${GoBig} ease-in-out;
-  width: 101%;
-  height: 101%;
+  top: 0;
+  width: 100%;
+  height: 100%;
   transition: 0.5s;
+  animation: 0.5s ${GoBig} ease-in-out;
+
+  ::-webkit-scrollbar-track {
+    background-color: ${colors.white};
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    background-color: ${colors.white};
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-image: -webkit-linear-gradient(
+      top,
+      ${colors.accentThree.hex} 0%,
+      ${colors.white} 50%,
+      ${colors.accentOne.hex} 100%
+    );
+  }
 `
 
-const Pun = styled.p<{ active: boolean }>`
+const Papyrus = styled(Wrapper as any)`
+  margin: auto;
+  padding: 0 40px 50px;
+
+  @media (min-width: ${breakpoints.XS}) {
+    padding: 0 20px 50px;
+  }
+
+  @media (min-width: ${breakpoints.S}) {
+    padding: 0 0 50px;
+  }
+`
+
+const IconHolder = styled.span`
+  display: flex;
+  position: sticky;
+  top: 0;
+`
+
+const CloseBtn = styled(CloseSVG)`
+  cursor: pointer;
+  height: 20px;
+  width: 20px;
+  margin-left: auto;
+  margin-right: -35px;
+  margin-top: 25px;
+
+  :hover {
+    transform: scale(1.1);
+  }
+
+  @media (min-width: ${breakpoints.S}) {
+    height: 28px;
+    width: 28px;
+    margin-top: 25px;
+    margin-right: -50px;
+  }
+
+  @media (min-width: ${breakpoints.XL}) {
+    height: 45px;
+    width: 45px;
+  }
+`
+
+const Pun = styled.p`
   ${textStyles.plainHeavy};
   color: ${colors.white};
   margin: 0;
@@ -185,12 +250,9 @@ const Pun = styled.p<{ active: boolean }>`
   padding: 30px 10px;
   border-bottom: 5px dashed;
   transition: 0.5s;
-  transition-delay: 1s;
 
   :nth-of-type(1) {
     border-top: 5px dashed;
     margin-top: 30px;
   }
-
-  ${props => (props.active ? `max-height: unset;` : `max-height: 0;`)}
 `

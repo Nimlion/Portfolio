@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { graphql } from "gatsby"
 
 // Components
@@ -12,6 +12,11 @@ import Interests from "../components/interests"
 import TextBlock from "../components/textBlock"
 
 const IndexPage = (prismicData: any) => {
+  useEffect(() => {
+    console.log(
+      "For certain you have to be lost to find something that cannot be found, else everyone would know where it is."
+    )
+  })
   return (
     <Layout>
       <SEO title="Home" />
