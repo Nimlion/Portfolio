@@ -1,0 +1,30 @@
+{
+    "Main": {
+        "uid": {
+            "type": "UID",
+            "config": {
+                "label": "uid"
+            }
+        },
+        "title": {
+            "type": "Text",
+            "config": {
+                "label": "title"
+            }
+        },
+        "puns": {
+            "type": "Group",
+            "config": {
+                "fields": {
+                    "pun": {
+                        "type": "Text",
+                        "config": {
+                            "label": "pun"
+                        }
+                    }
+                },
+                "label": "puns"
+            }
+        }
+    }
+}
