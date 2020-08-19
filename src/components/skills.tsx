@@ -29,10 +29,12 @@ const SkillBox: React.FC<ISkill> = ({ items, primary }: ISkill) => {
   const boxRef = useRef<HTMLDivElement | null>(null)
 
   const ToggleBox = () => {
-    if (boxRef !== null && boxRef.current !== null) {
-      if (boxRef.current.firstElementChild !== null) {
-        setBoxHeight(boxRef.current.firstElementChild.clientHeight)
-      }
+    if (
+      boxRef !== null &&
+      boxRef.current !== null &&
+      boxRef.current.firstElementChild !== null
+    ) {
+      setBoxHeight(boxRef.current.firstElementChild.clientHeight)
       setOpened(prevState => !prevState)
     }
   }
@@ -50,7 +52,7 @@ const SkillBox: React.FC<ISkill> = ({ items, primary }: ISkill) => {
       <SkillBar onClick={() => ToggleBox()}>
         {primary.category_name[0].text}
       </SkillBar>
-      <TogglableBox active={opened} heigth={boxHeight} ref={boxRef}>
+      <TogglableBox active={opened} height={boxHeight} ref={boxRef}>
         <SkillBlock>
           {items.map((item: ISkillItem, key: number) => (
             <Skill key={key}>{item.item}</Skill>
@@ -72,15 +74,15 @@ const SkillBar = styled.div`
   cursor: pointer;
 `
 
-const TogglableBox = styled.div<{ heigth: number; active: boolean }>`
+const TogglableBox = styled.div<{ height: number; active: boolean }>`
   background-color: ${colors.darkGrey};
   overflow: hidden;
   transition: 0.5s;
-  border-bottom: 1px solid ${colors.background};
+  border-bottom: 2px solid ${colors.background};
 
   ${props =>
     props.active
-      ? `max-height: ${props.heigth}px;`
+      ? `max-height: ${props.height}px;`
       : `max-height: 0; border: none;`}
 `
 

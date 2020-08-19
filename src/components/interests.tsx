@@ -95,14 +95,14 @@ export const Container = styled.div`
   background: ${colors.background};
   width: 100%;
   margin: 100px auto;
-`
-
-export const Wrapper = styled.div`
-  ${grid}
 
   @media (min-width: ${breakpoints.S}) {
     margin: 150px auto;
   }
+`
+
+export const Wrapper = styled.div`
+  ${grid}
 `
 
 export const Title = styled.h3`
