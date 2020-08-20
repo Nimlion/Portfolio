@@ -122,25 +122,23 @@ const Title = styled.h1`
   color: ${colors.white};
   margin-top: 40%;
   letter-spacing: 5px;
-  text-shadow: 4px 4px ${colors.accentOne.hex},
-    8px 8px ${colors.accentThree.hex};
+  text-shadow: 4px 4px ${colors.accentOne.hex}, 8px 8px ${colors.accentTwo.hex};
 
   @media (min-width: ${breakpoints.M}) {
     margin-top: 15%;
     text-shadow: 6px 6px ${colors.accentOne.hex},
-      12px 12px ${colors.accentThree.hex};
+      12px 12px ${colors.accentTwo.hex};
   }
 `
 
 const UnderTitle = styled.h3`
   ${textStyles.title};
   color: ${colors.white};
-  text-shadow: 1px 1px ${colors.accentOne.hex},
-    2px 2px ${colors.accentThree.hex};
+  text-shadow: 1px 1px ${colors.accentOne.hex}, 2px 2px ${colors.accentTwo.hex};
 
   @media (min-width: ${breakpoints.S}) {
     text-shadow: 2px 2px ${colors.accentOne.hex},
-      4px 4px ${colors.accentThree.hex};
+      4px 4px ${colors.accentTwo.hex};
   }
 `
 
@@ -191,7 +189,7 @@ const HiddenScroll = styled.span`
   ::-webkit-scrollbar-thumb {
     background-image: -webkit-linear-gradient(
       top,
-      ${colors.accentThree.hex} 0%,
+      ${colors.accentTwo.hex} 0%,
       ${colors.white} 50%,
       ${colors.accentOne.hex} 100%
     );

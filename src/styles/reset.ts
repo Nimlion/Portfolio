@@ -9,11 +9,11 @@ const reset = createGlobalStyle`
 
   * {
     ::-moz-selection {
-      background: ${colors.accentThree.hex}
+      background: ${colors.accentTwo.hex}
     }
 
     ::selection {
-      background: ${colors.accentThree.hex}
+      background: ${colors.accentTwo.hex}
     }
   }
 
@@ -40,7 +40,7 @@ const reset = createGlobalStyle`
 
     ::-webkit-scrollbar-thumb {
         background-image: -webkit-linear-gradient(top,
-                                                ${colors.accentThree.hex} 0%,
+                                                ${colors.accentTwo.hex} 0%,
                                                 ${colors.white} 50%,
                                                 ${colors.accentOne.hex} 100%);
     }
