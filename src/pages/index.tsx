@@ -13,10 +13,12 @@ import TextBlock from "../components/textBlock"
 
 const IndexPage = (prismicData: any) => {
   useEffect(() => {
+    // tslint:disable-next-line: no-console
     console.log(
       "For certain you have to be lost to find something that cannot be found, else everyone would know where it is."
     )
-  })
+  }, [])
+
   return (
     <Layout>
       <SEO title="Home" />

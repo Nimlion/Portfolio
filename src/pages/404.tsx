@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import styled, { keyframes } from "styled-components"
 
@@ -19,10 +19,10 @@ const NotFoundPage = () => {
   const [keyTwo, setKeyTwo] = useState(0)
   const [keyThree, setKeyThree] = useState(0)
 
-  if (keyOne === 0 && keyTwo === 0 && keyThree === 0) {
+  useEffect(() => {
     // tslint:disable-next-line: no-console
     console.log("hint: up == down.")
-  }
+  }, [])
 
   let data = useStaticQuery(graphql`
     {
