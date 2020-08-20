@@ -1,4 +1,5 @@
 import React from "react"
+import styled from "styled-components"
 
 // Styling
 import colors from "../styles/colors"
@@ -7,9 +8,6 @@ import breakpoints from "../styles/breakpoints"
 
 // Components
 import { Container, Wrapper, Title } from "./interests"
-import styled from "styled-components"
-
-// Typings
 
 const TextBlock: React.FC = (data: any) => {
   return (
@@ -26,8 +24,16 @@ const TextBlock: React.FC = (data: any) => {
 
             for (let i = 0; i < textSpans.length; i++) {
               paragraph.text = paragraph.text.replace(
-                textSpans[i],
-                `<a href=${paragraph.spans[i].data.url} target="_blank" rel="noopener noreferrer">${textSpans[i]}</a>`
+                " " + textSpans[i] + " ",
+                ` <a href=${paragraph.spans[i].data.url} target="_blank" rel="noopener noreferrer">${textSpans[i]}</a> `
+              )
+              paragraph.text = paragraph.text.replace(
+                textSpans[i] + ".",
+                `<a href=${paragraph.spans[i].data.url} target="_blank" rel="noopener noreferrer">${textSpans[i]}</a>.`
+              )
+              paragraph.text = paragraph.text.replace(
+                textSpans[i] + ",",
+                `<a href=${paragraph.spans[i].data.url} target="_blank" rel="noopener noreferrer">${textSpans[i]}</a>,`
               )
             }
           }
