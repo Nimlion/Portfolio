@@ -13,10 +13,6 @@ export default {
     rgba: "0, 171, 236",
   },
   accentTwo: {
-    hex: "#ff6347",
-    rgba: "255, 99, 71",
-  },
-  accentThree: {
     hex: "#FA8223",
     rgba: "250, 130, 35",
   },

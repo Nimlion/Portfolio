@@ -51,7 +51,7 @@ const Paragraph = styled.p`
   color: ${colors.white};
 
   a {
-    color: ${colors.accentThree.hex};
+    color: ${colors.accentTwo.hex};
     text-decoration: none;
     white-space: nowrap;
     position: relative;
