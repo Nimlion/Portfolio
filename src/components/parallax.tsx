@@ -16,35 +16,60 @@ const ParallaxHero: React.FC<IParallax> = ({ imgURL, title }: IParallax) => {
   const [currentTitle, setCurrentTitle] = useState(title)
   const titleRef = useRef<HTMLSpanElement>(null)
 
-  const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
+  let isMounted = true
+
+  const sleep = (ms: number) =>
+    new Promise(resolve => {
+      if (isMounted === true) {
+        setTimeout(resolve, ms)
+      }
+    })
 
   const typingContainer = titleRef.current
 
   const keepWriting = async () => {
-    while (typingContainer !== null) {
-      await write(typingContainer.innerHTML)
-      await sleep(1000)
+    while (typingContainer !== null && isMounted === true) {
+      await write(typingContainer.innerHTML).catch(error => {
+        return error
+      })
+      await sleep(1000).catch(error => {
+        return error
+      })
     }
+    return
   }
 
   const write = async (text: string) => {
     if (
+      isMounted === true &&
       typingContainer !== undefined &&
       typingContainer !== null &&
       currentTitle !== undefined &&
       currentTitle !== null
     ) {
       let index = 0
-      while (index < text.length) {
-        await sleep(500)
+      while (
+        typingContainer !== null &&
+        isMounted === true &&
+        index < text.length
+      ) {
+        await sleep(500).catch(error => {
+          return error
+        })
         index++
-        setCurrentTitle(currentTitle.substring(0, index))
+        if (isMounted === true) {
+          setCurrentTitle(currentTitle.substring(0, index))
+        }
       }
     }
   }
 
   useEffect(() => {
     keepWriting()
+
+    return () => {
+      isMounted = false
+    }
   }, [typingContainer])
 
   useLayoutEffect(() => {
@@ -54,8 +79,7 @@ const ParallaxHero: React.FC<IParallax> = ({ imgURL, title }: IParallax) => {
     }
 
     window.addEventListener("scroll", updateParallax)
-    // Specify how to clean up after this effect:
-    return function cleanup() {
+    return () => {
       window.removeEventListener("scroll", updateParallax)
     }
   })
