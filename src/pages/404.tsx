@@ -19,9 +19,18 @@ const NotFoundPage = () => {
   const [keyTwo, setKeyTwo] = useState(0)
   const [keyThree, setKeyThree] = useState(0)
 
+  const resetKeys = () => {
+    setKeyOne(0)
+    setKeyTwo(0)
+    setKeyThree(0)
+    document.getElementsByTagName("html")[0].style.overflow = "auto"
+  }
+
   useEffect(() => {
     // tslint:disable-next-line: no-console
     console.log("hint: up == down.")
+
+    return () => resetKeys()
   }, [])
 
   let data = useStaticQuery(graphql`
@@ -40,12 +49,6 @@ const NotFoundPage = () => {
   `)
   data = data.allPrismicPuns.nodes[0].data
 
-  const resetKeys = () => {
-    setKeyOne(0)
-    setKeyTwo(0)
-    setKeyThree(0)
-    document.getElementsByTagName("html")[0].style.overflow = "auto"
-  }
   const increaseKeyOne = () => {
     keyOne < 360 ? setKeyOne(prevState => prevState + 15) : setKeyOne(0)
   }
