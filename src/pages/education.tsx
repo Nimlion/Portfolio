@@ -7,19 +7,17 @@ import Hero from "../components/hero"
 import Layout from "../components/layout"
 import Roadmap from "../components/roadmap"
 
-const EducationPage = (prismicData: any) => {
-  return (
-    <Layout>
-      <SEO title="Education" />
-      <Hero
-        title={prismicData.data.allPrismicEducation.nodes[0].data.title[0].text}
-      />
-      <Roadmap
-        education={prismicData.data.allPrismicEducation.nodes[0].data.education}
-      />
-    </Layout>
-  )
-}
+const EducationPage = (prismicData: any) => (
+  <Layout>
+    <SEO title="Education" />
+    <Hero
+      title={prismicData.data.allPrismicEducation.nodes[0].data.title[0].text}
+    />
+    <Roadmap
+      education={prismicData.data.allPrismicEducation.nodes[0].data.education}
+    />
+  </Layout>
+)
 
 export default EducationPage
 

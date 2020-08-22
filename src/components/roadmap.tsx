@@ -16,52 +16,46 @@ const Roadmap: React.FC<IEducation> = ({
   education,
   btnLabel,
   btnInternalLink,
-}: IEducation) => {
-  console.log(education)
-
-  return (
-    <Container>
-      <Wrapper>
-        <Road>
-          {education.map((study: IEducationBlock, key: number) => {
-            return (
-              <Row key={key}>
-                <Block>
-                  <Image src={study.image.url} alt={study.image.alt} />
-                </Block>
-                <Block>
-                  <Text>{study.paragraph}</Text>
-                  <Holder>
-                    <LinkBox
-                      size="s"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      href={study.link}
-                    >
-                      {study.label}
-                    </LinkBox>
-                  </Holder>
-                </Block>
-              </Row>
-            )
-          })}
-        </Road>
-        {btnLabel && btnInternalLink && (
-          <Holder>
-            <LinkBox
-              size="l"
-              target="_blank"
-              rel="noopener noreferrer"
-              href={btnInternalLink}
-            >
-              {btnLabel}
-            </LinkBox>
-          </Holder>
-        )}
-      </Wrapper>
-    </Container>
-  )
-}
+}: IEducation) => (
+  <Container>
+    <Wrapper>
+      <Road>
+        {education.map((study: IEducationBlock, key: number) => (
+          <Row key={key}>
+            <Block>
+              <Image src={study.image.url} alt={study.image.alt} />
+            </Block>
+            <Block>
+              <Text>{study.paragraph}</Text>
+              <Holder>
+                <LinkBox
+                  size="s"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={study.link}
+                >
+                  {study.label}
+                </LinkBox>
+              </Holder>
+            </Block>
+          </Row>
+        ))}
+      </Road>
+      {btnLabel && btnInternalLink && (
+        <Holder>
+          <LinkBox
+            size="l"
+            target="_blank"
+            rel="noopener noreferrer"
+            href={btnInternalLink}
+          >
+            {btnLabel}
+          </LinkBox>
+        </Holder>
+      )}
+    </Wrapper>
+  </Container>
+)
 
 export default Roadmap
 
