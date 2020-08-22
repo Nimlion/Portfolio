@@ -1,0 +1,60 @@
+{
+    "Main": {
+        "title": {
+            "type": "StructuredText",
+            "config": {
+                "single": "heading1, heading2",
+                "label": "title",
+                "placeholder": "Title"
+            }
+        },
+        "education": {
+            "type": "Group",
+            "config": {
+                "fields": {
+                    "image": {
+                        "type": "Image",
+                        "config": {
+                            "constraint": {},
+                            "thumbnails": [],
+                            "label": "image"
+                        }
+                    },
+                    "paragraph": {
+                        "type": "Text",
+                        "config": {
+                            "label": "paragraph"
+                        }
+                    },
+                    "label": {
+                        "type": "Text",
+                        "config": {
+                            "label": "label"
+                        }
+                    },
+                    "link": {
+                        "type": "Text",
+                        "config": {
+                            "label": "link"
+                        }
+                    }
+                },
+                "label": "Education"
+            }
+        },
+        "btnlabel": {
+            "type": "Text",
+            "config": {
+                "label": "btnLabel",
+                "placeholder": "label"
+            }
+        },
+        "btninternallink": {
+            "type": "Text",
+            "config": {
+                "label": "btnInternalLink",
+                "placeholder": "internal link"
+            }
+        }
+    }
+}
