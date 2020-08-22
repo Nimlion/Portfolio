@@ -46,6 +46,8 @@ const IndexPage = (prismicData: any) => {
   )
 }
 
+export default IndexPage
+
 export const query = graphql`
   query {
     prismicHomepage {
@@ -150,5 +152,3 @@ export const query = graphql`
     }
   }
 `
-
-export default IndexPage

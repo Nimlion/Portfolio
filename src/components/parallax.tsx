@@ -86,7 +86,7 @@ const ParallaxHero: React.FC<IParallax> = ({ imgURL, title }: IParallax) => {
 
   return (
     <Container>
-      <ParallaxWrapper url={imgURL} scroll={offset} id="name"></ParallaxWrapper>
+      <ParallaxWrapper url={imgURL} scroll={offset} />
       {title && (
         <Title ref={titleRef} scroll={offset}>
           {currentTitle}
