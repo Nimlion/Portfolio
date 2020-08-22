@@ -16,6 +16,7 @@ export interface IImage {
 
 export interface IPrismicImage {
   url: string
+  alt?: string
 }
 
 export interface IInterests {
@@ -65,4 +66,17 @@ export interface IJobInfo {
   job_title: string
   logo: IPrismicImage
   period_duration: string
+}
+
+export interface IEducation {
+  education: IEducationBlock[]
+  btnLabel?: string
+  btnInternalLink?: string
+}
+
+export interface IEducationBlock {
+  label: string
+  link: string
+  paragraph: string
+  image: IPrismicImage
 }
