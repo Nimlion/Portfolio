@@ -14,7 +14,7 @@ const Hero: React.FC<IHero> = ({ title }: IHero) => {
   const [offset, setOffset] = useState(0)
 
   useLayoutEffect(() => {
-    // Changes the image position for a parallax effect
+    // Changes the title position for a parallax effect
     const updateParallax = () => {
       setOffset(Math.round(window.pageYOffset))
     }
