@@ -14,6 +14,9 @@ To see the site visit: https://www.hosamdarwish.nl.
 - Prettier
 - Netlify
 
+USED LIBRARIES:
+- For the swipe effect on mobile: https://www.npmjs.com/package/react-swipeable
+
 ## Build by: Hosam Darwish
 
 </br>
