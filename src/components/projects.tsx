@@ -191,7 +191,7 @@ const Title = styled.h2`
   transform: translate(-50%, -50%);
   width: 75%;
   text-align: center;
-  text-shadow: 0px 0px 6px ${colors.shadow};
+  text-shadow: 5px 5px 6px ${colors.shadow};
 `
 
 const Links = styled.div`
