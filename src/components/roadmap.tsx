@@ -75,7 +75,10 @@ const Road = styled.div`
     width: 2px;
     left: 0;
     top: 0;
-    background-image: linear-gradient(black 33%, ${colors.white} 0%);
+    background-image: linear-gradient(
+      ${colors.background} 33%,
+      ${colors.white} 0%
+    );
     background-position: right;
     background-size: 2px 25px;
     background-repeat: repeat-y;
