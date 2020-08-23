@@ -65,6 +65,7 @@ interface IButton {
 
 const Road = styled.div`
   margin: 0;
+  padding: 25px 0;
   position: relative;
 
   :after {
