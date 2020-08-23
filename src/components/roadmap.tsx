@@ -107,10 +107,17 @@ const Block = styled.div`
 const Row = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 50px 0 0;
+
+  :not(:nth-of-type(1)) {
+    margin: 50px 0 0;
+  }
 
   @media (min-width: ${breakpoints.M}) {
     flex-direction: row;
+
+    :not(:nth-of-type(1)) {
+      margin: 100px 0 0;
+    }
 
     :nth-of-type(odd) {
       flex-direction: row-reverse;
@@ -123,6 +130,12 @@ const Row = styled.div`
           padding: 0 40px 0 0;
         }
       }
+    }
+  }
+
+  @media (min-width: ${breakpoints.XL}) {
+    :not(:nth-of-type(1)) {
+      margin: 150px 0 0;
     }
   }
 `
