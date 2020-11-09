@@ -31,7 +31,6 @@ export const query = graphql`
           }
           carousell {
             image {
-              alt
               url
             }
           }
