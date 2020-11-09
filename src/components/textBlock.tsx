@@ -52,7 +52,7 @@ const TextBlock: React.FC = (data: any) => {
 
 export default TextBlock
 
-const Paragraph = styled.p`
+export const Paragraph = styled.p`
   ${textStyles.plainSubtle};
   color: ${colors.white};
 

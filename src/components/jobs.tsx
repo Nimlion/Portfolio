@@ -153,7 +153,15 @@ const JobBox = styled.div<IPrismicImage>`
     }
   }
 
+  @media (min-width: ${breakpoints.XS}) {
+    height: 225px;
+  }
+
   @media (min-width: ${breakpoints.S}) {
+    height: 300px;
+  }
+
+  @media (min-width: ${breakpoints.M}) {
     height: 225px;
   }
 `

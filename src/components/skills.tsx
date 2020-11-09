@@ -99,7 +99,7 @@ const Skill = styled.div`
   color: ${colors.white};
   padding: 20px 25px;
   text-align: center;
-  margin: auto;
+  margin: 0;
 
   @media (min-width: ${breakpoints.M}) {
     padding: 30px 50px;
