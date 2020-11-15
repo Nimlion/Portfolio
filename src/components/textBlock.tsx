@@ -55,6 +55,7 @@ export default TextBlock
 export const Paragraph = styled.p`
   ${textStyles.plainSubtle};
   color: ${colors.white};
+  margin: 25px 0;
 
   a {
     color: ${colors.accentTwo.hex};

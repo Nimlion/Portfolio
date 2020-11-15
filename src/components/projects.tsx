@@ -41,61 +41,63 @@ const Projects: React.FC<IProjects> = ({ projects }: IProjects) => {
       <Wrapper>
         <ProjectContainer>
           {projects.map((project: IProject, key: number) => (
-            <Project key={key} url={project.data.project_hero.url}>
-              <Technologies>
-                {checkTech("java", project.data.technologies) && (
-                  <JavaSVG color={colors.white} />
-                )}
-                {checkTech("react", project.data.technologies) && (
-                  <ReactSVG color={colors.white} />
-                )}
-                {checkTech("angular", project.data.technologies) && (
-                  <AngularSVG color={colors.white} />
-                )}
-                {checkTech("flutter", project.data.technologies) && (
-                  <FlutterSVG color={colors.white} />
-                )}
-                {checkTech("php", project.data.technologies) && (
-                  <PHPSVG color={colors.white} />
-                )}
-                {checkTech("laravel", project.data.technologies) && (
-                  <LaravelSVG color={colors.white} />
-                )}
-                {checkTech("python", project.data.technologies) && (
-                  <PythonSVG color={colors.white} />
-                )}
-              </Technologies>
-              <Title>{project.data.project_title[0].text}</Title>
-              <Links>
-                {project.data.designurl && (
-                  <Link
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    href={project.data.designurl}
-                  >
-                    <DesignSVG color={colors.white} />
-                  </Link>
-                )}
-                {project.data.codeurl && (
-                  <Link
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    href={project.data.codeurl}
-                  >
-                    <CodeSVG color={colors.white} />
-                  </Link>
-                )}
-                {project.data.domainurl && (
-                  <Link
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    href={project.data.domainurl}
-                  >
-                    <SiteSVG color={colors.white} />
-                  </Link>
-                )}
-              </Links>
-            </Project>
+            <ProjectLink href={"project/?" + project.data.route}>
+              <Project key={key} url={project.data.project_hero.url}>
+                <Technologies>
+                  {checkTech("java", project.data.technologies) && (
+                    <JavaSVG color={colors.white} />
+                  )}
+                  {checkTech("react", project.data.technologies) && (
+                    <ReactSVG color={colors.white} />
+                  )}
+                  {checkTech("angular", project.data.technologies) && (
+                    <AngularSVG color={colors.white} />
+                  )}
+                  {checkTech("flutter", project.data.technologies) && (
+                    <FlutterSVG color={colors.white} />
+                  )}
+                  {checkTech("php", project.data.technologies) && (
+                    <PHPSVG color={colors.white} />
+                  )}
+                  {checkTech("laravel", project.data.technologies) && (
+                    <LaravelSVG color={colors.white} />
+                  )}
+                  {checkTech("python", project.data.technologies) && (
+                    <PythonSVG color={colors.white} />
+                  )}
+                </Technologies>
+                <Title>{project.data.project_title[0].text}</Title>
+                <Links>
+                  {project.data.designurl && (
+                    <ExternalLink
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      href={project.data.designurl}
+                    >
+                      <DesignSVG color={colors.white} />
+                    </ExternalLink>
+                  )}
+                  {project.data.codeurl && (
+                    <ExternalLink
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      href={project.data.codeurl}
+                    >
+                      <CodeSVG color={colors.white} />
+                    </ExternalLink>
+                  )}
+                  {project.data.domainurl && (
+                    <ExternalLink
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      href={project.data.domainurl}
+                    >
+                      <SiteSVG color={colors.white} />
+                    </ExternalLink>
+                  )}
+                </Links>
+              </Project>
+            </ProjectLink>
           ))}
         </ProjectContainer>
       </Wrapper>
@@ -143,7 +145,6 @@ const Project = styled.div<{ url: string }>`
   width: 100%;
   height: 500px;
   position: relative;
-  margin: 50px 0 0;
   position: relative;
   transition: 0.3s;
   overflow: hidden;
@@ -170,16 +171,7 @@ const Project = styled.div<{ url: string }>`
   }
 
   @media (min-width: ${breakpoints.M}) {
-    width: calc(50% - 25px);
     box-shadow: 2px 2px 10px ${colors.shadow};
-
-    :nth-of-type(odd) {
-      margin: 50px 25px 0 0;
-    }
-
-    :nth-of-type(even) {
-      margin: 50px 0 0 25px;
-    }
   }
 `
 const Title = styled.h2`
@@ -204,7 +196,7 @@ const Links = styled.div`
   align-items: center;
 `
 
-const Link = styled.a`
+const ExternalLink = styled.a`
   margin: 0;
 
   svg {
@@ -223,6 +215,32 @@ const Link = styled.a`
       margin: 0 30px;
       height: 60px;
       width: 60px;
+    }
+  }
+`
+
+const ProjectLink = styled.a`
+  height: 100%;
+  width: 100%;
+  display: block;
+
+  :not(:first-of-type) ${Project} {
+    margin: 50px 0 0;
+  }
+
+  @media (min-width: ${breakpoints.M}) {
+    width: calc(50% - 25px);
+
+    :nth-of-type(-n + 2) ${Project} {
+      margin: 0;
+    }
+
+    :nth-of-type(odd) {
+      margin: 0 25px 0 0;
+    }
+
+    :nth-of-type(even) {
+      margin: 0 0 0 25px;
     }
   }
 `

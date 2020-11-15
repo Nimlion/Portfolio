@@ -139,7 +139,7 @@ const Row = styled.div`
   }
 `
 
-const IconHolder = styled.span<{ active: boolean }>`
+export const IconHolder = styled.span<{ active: boolean }>`
   display: none;
   position: absolute;
   top: calc(50% - 40px);
@@ -163,7 +163,7 @@ const IconHolder = styled.span<{ active: boolean }>`
   }
 `
 
-const ArrowIcon = styled(ArrowSVG)`
+export const ArrowIcon = styled(ArrowSVG)`
   width: 48px;
   height: 80px;
   opacity: 0.6;
