@@ -38,6 +38,7 @@ export const query = graphql`
           designurl
           domainurl
           technologies
+          route
         }
       }
     }
