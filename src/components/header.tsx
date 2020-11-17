@@ -201,7 +201,7 @@ const Container = styled.header<{ scrolling: string }>`
   width: 100%;
   position: fixed;
   transition: 0.5s;
-  z-index: 1;
+  z-index: 2;
   box-shadow: 0 5px 10px ${colors.background};
 
   :hover {
