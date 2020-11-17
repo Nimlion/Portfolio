@@ -27,13 +27,17 @@ interface IProject {
   data: any
 }
 
+export const checkTech = (tech: string, source: string) => {
+  if (source.toLowerCase().search(tech) !== -1) {
+    return true
+  } else {
+    return false
+  }
+}
+
 const Projects: React.FC<IProjects> = ({ projects }: IProjects) => {
-  const checkTech = (tech: string, source: string) => {
-    if (source.toLowerCase().search(tech) !== -1) {
-      return true
-    } else {
-      return false
-    }
+  const redirect = (projectName: string) => {
+    window.location.href = "/project/?" + projectName
   }
 
   return (
@@ -41,63 +45,65 @@ const Projects: React.FC<IProjects> = ({ projects }: IProjects) => {
       <Wrapper>
         <ProjectContainer>
           {projects.map((project: IProject, key: number) => (
-            <ProjectLink href={"project/?" + project.data.route}>
-              <Project key={key} url={project.data.project_hero.url}>
-                <Technologies>
-                  {checkTech("java", project.data.technologies) && (
-                    <JavaSVG color={colors.white} />
-                  )}
-                  {checkTech("react", project.data.technologies) && (
-                    <ReactSVG color={colors.white} />
-                  )}
-                  {checkTech("angular", project.data.technologies) && (
-                    <AngularSVG color={colors.white} />
-                  )}
-                  {checkTech("flutter", project.data.technologies) && (
-                    <FlutterSVG color={colors.white} />
-                  )}
-                  {checkTech("php", project.data.technologies) && (
-                    <PHPSVG color={colors.white} />
-                  )}
-                  {checkTech("laravel", project.data.technologies) && (
-                    <LaravelSVG color={colors.white} />
-                  )}
-                  {checkTech("python", project.data.technologies) && (
-                    <PythonSVG color={colors.white} />
-                  )}
-                </Technologies>
-                <Title>{project.data.project_title[0].text}</Title>
-                <Links>
-                  {project.data.designurl && (
-                    <ExternalLink
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      href={project.data.designurl}
-                    >
-                      <DesignSVG color={colors.white} />
-                    </ExternalLink>
-                  )}
-                  {project.data.codeurl && (
-                    <ExternalLink
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      href={project.data.codeurl}
-                    >
-                      <CodeSVG color={colors.white} />
-                    </ExternalLink>
-                  )}
-                  {project.data.domainurl && (
-                    <ExternalLink
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      href={project.data.domainurl}
-                    >
-                      <SiteSVG color={colors.white} />
-                    </ExternalLink>
-                  )}
-                </Links>
-              </Project>
-            </ProjectLink>
+            <Project
+              key={key}
+              url={project.data.project_hero.url}
+              onClick={() => redirect(project.data.route)}
+            >
+              <Technologies>
+                {checkTech("java", project.data.technologies) && (
+                  <JavaSVG color={colors.white} />
+                )}
+                {checkTech("react", project.data.technologies) && (
+                  <ReactSVG color={colors.white} />
+                )}
+                {checkTech("angular", project.data.technologies) && (
+                  <AngularSVG color={colors.white} />
+                )}
+                {checkTech("flutter", project.data.technologies) && (
+                  <FlutterSVG color={colors.white} />
+                )}
+                {checkTech("php", project.data.technologies) && (
+                  <PHPSVG color={colors.white} />
+                )}
+                {checkTech("laravel", project.data.technologies) && (
+                  <LaravelSVG color={colors.white} />
+                )}
+                {checkTech("python", project.data.technologies) && (
+                  <PythonSVG color={colors.white} />
+                )}
+              </Technologies>
+              <Title>{project.data.project_title[0].text}</Title>
+              <Links>
+                {project.data.designurl && (
+                  <ExternalLink
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href={project.data.designurl}
+                  >
+                    <DesignSVG color={colors.white} />
+                  </ExternalLink>
+                )}
+                {project.data.codeurl && (
+                  <ExternalLink
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href={project.data.codeurl}
+                  >
+                    <CodeSVG color={colors.white} />
+                  </ExternalLink>
+                )}
+                {project.data.domainurl && (
+                  <ExternalLink
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href={project.data.domainurl}
+                  >
+                    <SiteSVG color={colors.white} />
+                  </ExternalLink>
+                )}
+              </Links>
+            </Project>
           ))}
         </ProjectContainer>
       </Wrapper>
@@ -145,10 +151,12 @@ const Project = styled.div<{ url: string }>`
   width: 100%;
   height: 500px;
   position: relative;
+  margin: 50px 0 0;
   position: relative;
   transition: 0.3s;
   overflow: hidden;
   box-shadow: 2px 2px 6px ${colors.shadow};
+  cursor: pointer;
 
   :hover {
     transform: scale(1.02);
@@ -171,9 +179,23 @@ const Project = styled.div<{ url: string }>`
   }
 
   @media (min-width: ${breakpoints.M}) {
+    width: calc(50% - 25px);
     box-shadow: 2px 2px 10px ${colors.shadow};
+
+    :nth-of-type(odd) {
+      margin: 0 25px 0 0;
+    }
+
+    :nth-of-type(even) {
+      margin: 0 0 0 25px;
+    }
+
+    :nth-of-type(n + 3) {
+      margin-top: 50px;
+    }
   }
 `
+
 const Title = styled.h2`
   ${textStyles.title};
   color: ${colors.white};
@@ -215,32 +237,6 @@ const ExternalLink = styled.a`
       margin: 0 30px;
       height: 60px;
       width: 60px;
-    }
-  }
-`
-
-const ProjectLink = styled.a`
-  height: 100%;
-  width: 100%;
-  display: block;
-
-  :not(:first-of-type) ${Project} {
-    margin: 50px 0 0;
-  }
-
-  @media (min-width: ${breakpoints.M}) {
-    width: calc(50% - 25px);
-
-    :nth-of-type(-n + 2) ${Project} {
-      margin: 0;
-    }
-
-    :nth-of-type(odd) {
-      margin: 0 25px 0 0;
-    }
-
-    :nth-of-type(even) {
-      margin: 0 0 0 25px;
     }
   }
 `
