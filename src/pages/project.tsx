@@ -30,7 +30,7 @@ import { ArrowIcon, IconHolder, Title, Wrapper } from "../components/interests"
 // Methods
 import { checkTech } from "../components/projects"
 
-const IndexPage = () => {
+const ProjectPage = () => {
   const [index, setIndex] = useState(0)
   const [modelActive, setModelActive] = useState(false)
 
@@ -251,7 +251,7 @@ const IndexPage = () => {
   )
 }
 
-export default IndexPage
+export default ProjectPage
 
 const Technologies = styled.div`
   display: flex;
