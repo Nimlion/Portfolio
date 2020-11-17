@@ -218,7 +218,7 @@ const IconHolder = styled.span`
   top: 0;
 `
 
-const CloseBtn = styled(CloseSVG)`
+export const CloseBtn = styled(CloseSVG)`
   cursor: pointer;
   height: 20px;
   width: 20px;

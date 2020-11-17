@@ -48,6 +48,14 @@ const Container = styled.div`
   @media (min-width: ${breakpoints.M}) {
     height: 80vh;
   }
+
+  @media (min-width: ${breakpoints.XXL}) {
+    height: 60vh;
+  }
+
+  @media (min-width: ${breakpoints.XXXL}) {
+    height: 50vh;
+  }
 `
 
 const ParallaxWrapper = styled.div`
