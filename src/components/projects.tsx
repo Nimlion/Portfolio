@@ -151,6 +151,7 @@ const Project = styled.div<{ url: string }>`
   width: 100%;
   height: 500px;
   position: relative;
+  margin: 50px 0 0;
   position: relative;
   transition: 0.3s;
   overflow: hidden;
@@ -178,6 +179,7 @@ const Project = styled.div<{ url: string }>`
   }
 
   @media (min-width: ${breakpoints.M}) {
+    width: calc(50% - 25px);
     box-shadow: 2px 2px 10px ${colors.shadow};
 
     :nth-of-type(odd) {
@@ -235,32 +237,6 @@ const ExternalLink = styled.a`
       margin: 0 30px;
       height: 60px;
       width: 60px;
-    }
-  }
-`
-
-const ProjectLink = styled.a`
-  height: 100%;
-  width: 100%;
-  display: block;
-
-  :not(:first-of-type) ${Project} {
-    margin: 50px 0 0;
-  }
-
-  @media (min-width: ${breakpoints.M}) {
-    width: calc(50% - 25px);
-
-    :nth-of-type(-n + 2) ${Project} {
-      margin: 0;
-    }
-
-    :nth-of-type(odd) {
-      margin: 0 25px 0 0;
-    }
-
-    :nth-of-type(even) {
-      margin: 0 0 0 25px;
     }
   }
 `
