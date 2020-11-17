@@ -6,6 +6,7 @@ import { Swipeable } from "react-swipeable"
 // Styling
 import colors from "../styles/colors"
 import textStyles from "../styles/textStyles"
+import { fontWeights } from "../styles/fonts"
 import breakpoints from "../styles/breakpoints"
 
 // Components
@@ -237,7 +238,7 @@ const IndexPage = () => {
                   rel="noopener noreferrer"
                   href={currProject.codeurl}
                 >
-                  Show me code <CodeSVG color={colors.white} />
+                  Show me the code <CodeSVG color={colors.white} />
                 </Button>
               )}
             </ButtonBar>
@@ -474,7 +475,8 @@ const ModalImage = styled.img`
 `
 
 const Button = styled.a`
-  ${textStyles.plainHeavy};
+  ${textStyles.plainSubtle};
+  font-weight: ${fontWeights.semiBold};
   padding: 10px 15px;
   text-decoration: none;
   color: ${colors.white};
@@ -488,10 +490,10 @@ const Button = styled.a`
   }
 
   svg {
-    margin-left: 25px;
+    margin-left: 15px;
     vertical-align: middle;
-    height: 35px;
-    width: 35px;
+    height: 25px;
+    width: 25px;
   }
 
   :hover {
@@ -504,6 +506,12 @@ const Button = styled.a`
     :not(:first-of-type),
     :first-of-type {
       margin: 0;
+    }
+
+    svg {
+      margin-left: 25px;
+      height: 35px;
+      width: 35px;
     }
   }
 `
