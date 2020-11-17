@@ -100,5 +100,6 @@ const Title = styled.span<IScroll>`
   text-transform: capitalize;
   text-shadow: 1px 1px 5px ${colors.background};
   width: max-content;
+  max-width: 100vw;
   padding-right: 2px;
 `

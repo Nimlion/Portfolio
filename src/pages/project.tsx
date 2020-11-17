@@ -288,6 +288,16 @@ const TechBar = styled.div`
     height: 50px;
     vertical-align: middle;
   }
+
+  :not(:first-of-type) {
+    margin: 20px auto 0;
+  }
+
+  @media (min-width: ${breakpoints.XS}) {
+    :not(:first-of-type) {
+      margin: 0 auto;
+    }
+  }
 `
 
 const Tech = styled.div`
@@ -524,11 +534,11 @@ const ButtonBar = styled.div`
 
   @media (min-width: ${breakpoints.M}) {
     flex-direction: row;
-  }
 
-  :hover ${Button} {
-    :not(:hover) {
-      border-color: ${colors.accentOne.hex};
+    :hover ${Button} {
+      :not(:hover) {
+        border-color: ${colors.accentOne.hex};
+      }
     }
   }
 `
