@@ -171,7 +171,7 @@ const HiddenScroll = styled.span`
   background: ${colors.background};
   left: 0;
   right: 0;
-  z-index: 1;
+  z-index: 2;
   margin: auto;
   overflow: auto;
   top: 0;
